@@ -1,0 +1,48 @@
+
+import '../../App.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
+import ProductCard from '../../components/ProductCard';
+
+import { useSelector } from 'react-redux';
+
+function Favorites() {
+
+    const favorites = useSelector((state) => state.favorites.favProducts);
+
+
+    // console.log(favorites);
+
+
+  return (
+    <>
+      <Header />
+      <main className='container main-content'>
+        <div className='row mt-4'>
+
+            <div className="col-md-9">
+
+                <h3>My Favorites ({favorites.length})</h3>
+          
+            <hr />
+
+            <div className="row">
+                {favorites && favorites.length > 0 ?(favorites.map((product) => (
+                  <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product.productId}>
+                    <ProductCard product={product} />
+                  </div>
+                ))): (<div className='alert alert-danger'>No Products Available Currently, Please Check Later...</div>)}
+            </div>
+            </div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  )
+}
+
+export default Favorites;

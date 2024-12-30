@@ -1,0 +1,171 @@
+#root {
+  --theme-color: #00AFEF;
+  display: flex;
+  flex-direction: column; /* Stack header, content, and footer vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+body, html {
+  height: 100%; /* Ensure the body and HTML take full height */
+  margin: 0;    /* Remove default margins */
+  
+}
+
+.main-content {
+  flex: 1; /* Push footer to the bottom by taking available space */
+  padding-top: 70px;
+}
+
+.main-content-home {
+  flex: 1; /* Push footer to the bottom by taking available space */
+}
+
+
+.clickbtn:active {
+  transform: scale(0.97);
+}
+
+.clickbtn {
+  transition: transform 1s, ease-in-out;
+}
+
+
+
+input[type="range"] {
+  accent-color: var(--theme-color);
+}
+
+
+.status-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  background-color: rgba(245, 245, 245, 0.8); /* Semi-transparent background */
+  color: black;
+  font-weight: light;
+  border-radius: 15px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+
+.hover-zoom:hover {
+  transform: scale(1.02); /* Slight zoom */
+  box-shadow: 0 8px 20px rgb(5, 223, 243); /* Enhance shadow */
+  transition: transform 0.2s, box-shadow 1s ease-in-out;
+}
+
+.eagle-lake-regular {
+  font-family: "Eagle Lake", serif;
+  font-weight: 600;
+  font-style: normal;
+  color: #00AFEF;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+
+
+.rating-slider {
+  width: 80%;
+}
+
+.rating-div {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+
+
+.custom-btn {
+  background-color: var(--theme-color);
+  color: white;
+  border: 2px solid var(--theme-color);
+  border-radius: 7px;
+  outline: none;
+  text-decoration: none;
+}
+
+
+.custom-btn-search {
+  background-color: var(--theme-color);
+  color: rgb(255, 255, 255);
+  border: 2px solid var(--theme-color);
+  border-radius: 7px;
+  width: 70px;
+  outline: none;
+  text-decoration: none;
+}
+
+
+.custom-btn-view {
+  background-color: var(--theme-color);
+  color: white;
+  border: 2px solid var(--theme-color);
+  outline: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.custom-btn-view-rounded {
+  background-color: var(--theme-color);
+  color: white;
+  border: 2px solid var(--theme-color);
+  outline: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.fixed-height {
+  height: 30px; /* Adjust as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Optional for single-line text */
+}
+
+
+.custom-btn:focus, .custom-btn:active {
+  box-shadow: none; /* Removes focus/active border shadow */
+  outline: none;
+}
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
