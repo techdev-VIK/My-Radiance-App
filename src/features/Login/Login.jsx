@@ -1,6 +1,6 @@
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 
 
 import axios from "axios";
@@ -8,7 +8,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [secret, setSecret] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [username, setUserName] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,14 +20,15 @@ const Login = () => {
 
     try {
       // Send the secret in the POST request body
-      const response = await axios.post("http://localhost:3000/admin/login", {
-        secret,
+      const response = await axios.post("https://radiance-backend.vercel.app/admin/login", {
+        username,password
       });
 
       if (response.data.token) {
         console.log("Login successful. Token:", response.data.token);
         // Store the token in localStorage
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", username);
         navigate("/pages/cart")
       } else {
         console.log(response.data.message); // Handle login errors
@@ -50,11 +53,11 @@ const Login = () => {
       <br />
       <form onSubmit={handleLogin}>
       <label htmlFor="username">Username:</label>
-        <input type="text" id="username" className="form-control" style={{border: "2px solid #00AFEF"}} required/>
+        <input type="text" id="username" className="form-control" style={{border: "2px solid #00AFEF"}} value={username} onChange={(e) => setUserName(e.target.value)}  required/>
         <br />
         <label htmlFor="password">Password:</label>
-        <input value={secret}
-        onChange={(e) => setSecret(e.target.value)} type="password" id="password" className="form-control" style={{border: "2px solid #00AFEF"}} required/>
+        <input value={password}
+        onChange={(e) => setPassword(e.target.value)} type="password" id="password" className="form-control" style={{border: "2px solid #00AFEF"}} required/>
 
 
 <button className='clickbtn btn btn-info text-light text-center mt-4' >Log In</button>

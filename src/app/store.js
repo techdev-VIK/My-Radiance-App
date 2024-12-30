@@ -4,6 +4,7 @@ import { cartSlice } from "../features/Cart/CartSlice";
 import favoritesSlice from "../features/Favorites/favoritesSlice";
 
 
+
 const radianceStore =  configureStore({
     reducer: {
         products: productsSlice.reducer,

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import { useEffect } from 'react';
 
+
 export default function Header(){
 
 
@@ -30,6 +31,7 @@ export default function Header(){
       navigate("/pages/login");
     } else {
       localStorage.removeItem("token"); // Remove token from storage
+      localStorage.removeItem("username");
       setIsLoggedIn(false);
       navigate("/"); // Redirect to home
     }
@@ -38,6 +40,7 @@ export default function Header(){
   const cartItems = useSelector((state) => state.cart.cartProducts);
 
   const favorites = useSelector((state) => state.favorites.favProducts);
+
 
   // Calculate the total number of items in the cart
   const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
@@ -105,7 +108,7 @@ export default function Header(){
 
             <li className="nav-item me-4">
               
-              <NavLink className="nav-link clickbtn" to="/pages/login">
+              <NavLink className="nav-link clickbtn" to={isLoggedIn ? `/pages/userinfo` : "/pages/login"}>
               <span className="bi bi-person position-relative" style={{ fontSize: '1.6rem', color: "#00AFEF" }}>
                 {isLoggedIn ? <span className="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle" style={{ fontSize: '0.95rem', padding: '2px 6px', lineHeight: '1' }}>
                   
