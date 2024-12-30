@@ -13,9 +13,12 @@ function UserDetails(){
     const {data, loading, error} = useFetch(`https://radiance-backend.vercel.app/users/read/${username}`);
 
 
+    // console.log(data)
+
     console.log("Fetched Data:", data);
     console.log("Loading:", loading);
     console.log("Error:", error);
+
 
     if (loading) {
         return (
@@ -35,8 +38,7 @@ function UserDetails(){
         <>
           <Header />
           <main className="container main-content">
-
-            {data && <div className="row">
+            {data ? (<div className="row">
                 <div className="col-md-4">
                     <img src="https://placehold.co/200?text=U" alt="" className="img-fluid rounded-circle" />
 
@@ -64,7 +66,7 @@ function UserDetails(){
                     </div>
                 </div>
 
-            </div>}
+            </div>):<div className="alert alert-danger">Data not available</div>}
           </main>
           <Footer />
         </>

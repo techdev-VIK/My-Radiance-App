@@ -51,7 +51,7 @@ const CartSummary = () => {
 
 
     const handlePlaceOrder = () => {
-        // dispatch(cartActions.clearCart());
+        dispatch(cartActions.clearCart());
 
         navigate("/pages/orderPlaced");
     }

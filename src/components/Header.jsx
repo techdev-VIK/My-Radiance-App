@@ -54,6 +54,9 @@ export default function Header(){
     
   }
 
+  const username = localStorage.getItem("username");
+
+
 
     return (
 
@@ -108,7 +111,7 @@ export default function Header(){
 
             <li className="nav-item me-4">
               
-              <NavLink className="nav-link clickbtn" to={isLoggedIn ? `/pages/userinfo` : "/pages/login"}>
+              <NavLink className="nav-link clickbtn" to={isLoggedIn ? `/pages/userinfo/${username}` : "/pages/login"}>
               <span className="bi bi-person position-relative" style={{ fontSize: '1.6rem', color: "#00AFEF" }}>
                 {isLoggedIn ? <span className="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle" style={{ fontSize: '0.95rem', padding: '2px 6px', lineHeight: '1' }}>
                   

@@ -7,7 +7,7 @@
 //     try {
 //         const response = await axios.get(`${backendUrl}/users/read/${username}`);
 //         console.log("Response:", response); // Should log the response
-//         return response.data;
+//         return response;
 //     } catch (error) {
 //         console.error("Error fetching user:", error); // Check for errors
 //         throw error; // Rethrow error for rejection handling
