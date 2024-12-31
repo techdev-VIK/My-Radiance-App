@@ -1,10 +1,9 @@
 
 
-import useFetch from "../../useFetch";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, userSlice } from "./UserSlice";
+import { fetchUser } from "./UserSlice";
 
 function UserDetails() {
 

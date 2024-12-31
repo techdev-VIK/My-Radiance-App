@@ -9,7 +9,7 @@ import Favorites from './features/Favorites/Favorites.jsx';
 
 import Cart from './features/Cart/Cart.jsx';
 
-import Login from './features/Login/Login.jsx';
+import Login from './features/User/Login.jsx';
 
 import radianceStore from './app/store.js';
 import OrderPlaced from './features/Cart/OrderPlaced.jsx';
@@ -18,7 +18,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 
 import UserInfo from './pages/UserInfo.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
-import SignUpForm from './pages/SignUpForm.jsx';
+import SignUpForm from './features/User/SignUpForm.jsx';
 
 
 const router = createBrowserRouter([
