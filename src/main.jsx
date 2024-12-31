@@ -19,7 +19,8 @@ import OrderPlaced from './features/Cart/OrderPlaced.jsx';
 import AllProductsPage from './pages/AllProductsPage.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
 
-import UserDetails from './features/Login/UserDetails.jsx';
+import UserInfo from './pages/UserInfo.jsx';
+import ProductDetails from './pages/ProductDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/allProducts/:productId",
-    element: <Details />
+    element: <ProductDetails />
   },
   {
     path: "/pages/orderPlaced",
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/pages/userinfo/:username",
-    element: <PrivateRoute><UserDetails /></PrivateRoute>
+    element: <PrivateRoute><UserInfo /></PrivateRoute>
   }
 ])
 

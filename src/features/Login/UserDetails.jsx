@@ -38,13 +38,13 @@ function UserDetails() {
 
   return (
     <>
-      <Header />
+      
       <main className="container main-content">
         {data ? (
-          <div className="row">
+          <div className="row py-4">
             {/* Left Section: Profile Info */}
             <div className="col-md-4">
-              <div className="card mt-5 sticky-top shadow">
+              <div className="card mt-5 shadow">
                 <div className="card-body text-center">
                   <img
                     src="https://placehold.co/150?text=U"
@@ -95,6 +95,9 @@ function UserDetails() {
                         <strong>Password:</strong>
                     </div>
                     <div className="col-3">
+                        <div>
+                            
+                        </div>
                         <div className="form-control">
                         {!passwordToggle ? "**************" : data.password}
                         </div>
@@ -128,16 +131,19 @@ function UserDetails() {
                     <div className="col-8">{data.alternateAddress}</div>
                   </div>
 
-                  <button className=" clickbtn custom-btn-view">Edit Details</button>
+                  <button className="clickbtn custom-btn-view">Edit Details</button>
                 </div>
               </div>
             </div>
+
+
+            
           </div>
         ) : (
           <div className="alert alert-danger">Data not available</div>
         )}
       </main>
-      <Footer />
+      
     </>
   );
 }
