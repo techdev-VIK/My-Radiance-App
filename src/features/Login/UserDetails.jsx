@@ -2,7 +2,9 @@
 
 import useFetch from "../../useFetch";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser, userSlice } from "./UserSlice";
 
 function UserDetails() {
 
@@ -10,11 +12,17 @@ function UserDetails() {
 
   const { username } = useParams();
 
-  const { data, loading, error } = useFetch(
-    `https://radiance-backend.vercel.app/users/read/${username}`
-  );
+  const dispatch = useDispatch();
 
-  if (loading) {
+  const {user, status, error} = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser(username));
+  }, [dispatch])
+
+
+
+  if (status==="loading") {
     return (
       <div
         className="d-flex justify-content-center align-items-center"
@@ -31,7 +39,7 @@ function UserDetails() {
     );
   }
 
-  if (error) {
+  if (status==="error") {
     return <div className="alert alert-danger">{error}</div>;
   }
 
@@ -39,7 +47,7 @@ function UserDetails() {
     <>
       
       <main className="container main-content">
-        {data ? (
+        {user ? (
           <div className="row py-4">
             {/* Left Section: Profile Info */}
             <div className="col-md-4">
@@ -51,9 +59,9 @@ function UserDetails() {
                     className="img-fluid rounded-circle mb-3"
                   />
                   <h4 className="fw-bold text-info">
-                    {data.firstName} {data.lastName}
+                    {user.firstName} {user.lastName}
                   </h4>
-                  <p className="text-muted">@{data.username}</p>
+                  <p className="text-muted">@{user.username}</p>
                 </div>
               </div>
             </div>
@@ -71,7 +79,7 @@ function UserDetails() {
                       <strong>Name:</strong>
                     </div>
                     <div className="col-8">
-                      {data.firstName} {data.lastName}
+                      {user.firstName} {user.lastName}
                     </div>
                   </div>
 
@@ -79,14 +87,14 @@ function UserDetails() {
                     <div className="col-4">
                       <strong>Username:</strong>
                     </div>
-                    <div className="col-8">@{data.username}</div>
+                    <div className="col-8">@{user.username}</div>
                   </div>
 
                   <div className="row mb-3">
                     <div className="col-4">
                       <strong>Phone Number:</strong>
                     </div>
-                    <div className="col-8">{data.phoneNumber}</div>
+                    <div className="col-8">{user.phoneNumber}</div>
                   </div>
 
                   <div className="row mb-3 align-items-center">
@@ -98,7 +106,7 @@ function UserDetails() {
                             
                         </div>
                         <div className="form-control">
-                        {!passwordToggle ? "**************" : data.password}
+                        {!passwordToggle ? "**************" : user.password}
                         </div>
                     </div>
                     <div className="col-2 me-auto">
@@ -120,14 +128,14 @@ function UserDetails() {
                     <div className="col-4">
                       <strong>Address:</strong>
                     </div>
-                    <div className="col-8">{data.address}</div>
+                    <div className="col-8">{user.address}</div>
                   </div>
 
                   <div className="row mb-4">
                     <div className="col-4">
                       <strong>Alternate Address:</strong>
                     </div>
-                    <div className="col-8">{data.alternateAddress}</div>
+                    <div className="col-8">{user.alternateAddress}</div>
                   </div>
 
                   <button className="clickbtn custom-btn-view">Edit Details</button>
@@ -139,7 +147,7 @@ function UserDetails() {
             
           </div>
         ) : (
-          <div className="alert alert-danger">Data not available</div>
+          <div className="alert alert-danger">user not available</div>
         )}
       </main>
       
