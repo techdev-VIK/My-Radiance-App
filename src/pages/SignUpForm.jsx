@@ -5,6 +5,8 @@ import Header from "../components/Header";
 const SignUpForm = () => {
     const [passwordToggle, setPasswordToggle] = useState(false);
 
+    const [rePasswordToggle, setRePasswordToggle] = useState(false);
+
     return (
         <>
             <Header />
@@ -22,7 +24,7 @@ const SignUpForm = () => {
                     <div className="col-md-4 mb-2">
                         <label htmlFor="username" className="form-label">Username</label>
                         <div className="input-group">
-                            <span className="input-group-text text-info" id="inputGroupPrepend">@</span>
+                            <span className="input-group-text" id="inputGroupPrepend">@</span>
                             <input type="text" className="form-control border-info" id="username" aria-describedby="inputGroupPrepend" required />
                         </div>
                     </div>
@@ -44,7 +46,31 @@ const SignUpForm = () => {
                                 {passwordToggle ? (
                                     <i className="bi bi-eye-fill text-dark"></i>
                                 ) : (
-                                    <i className="bi bi-eye-slash-fill text-info"></i>
+                                    <i className="bi bi-eye-slash-fill text-dark"></i>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div className="col-md-4 mb-2">
+                        <label htmlFor="password" className="form-label">Re-Enter Password</label>
+                        <div className="input-group">
+                            <input 
+                                type={rePasswordToggle ? "text" : "password"} 
+                                className="form-control border-info" 
+                                id="password" 
+                                required 
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-outline-info"
+                                onClick={() => setRePasswordToggle(!rePasswordToggle)}
+                            >
+                                {rePasswordToggle ? (
+                                    <i className="bi bi-eye-fill text-dark"></i>
+                                ) : (
+                                    <i className="bi bi-eye-slash-fill text-dark"></i>
                                 )}
                             </button>
                         </div>
@@ -52,7 +78,7 @@ const SignUpForm = () => {
 
                     <div className="col-md-4 mb-2">
                         <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                        <input type="text" className="form-control border-info" id="phoneNumber" required />
+                        <input type="number" className="form-control border-info" id="phoneNumber" min={10} max={10} required />
                     </div>
 
                     <div className="col-md-4 mb-2">

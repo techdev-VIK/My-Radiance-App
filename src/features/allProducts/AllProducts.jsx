@@ -116,7 +116,7 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
             
             <div className='d-flex justify-content-between my-2'>
                 <h3>Filters</h3>
-                <button className='clickbtn btn btn-outline-info btn-sm p-1' style={{fontWeight: 500}} onClick={clearFilters}>Clear All</button>
+                <button className='clickbtn btn btn-outline-info btn-sm p-1' onClick={clearFilters}>Clear All</button>
             </div>
               
               <hr />

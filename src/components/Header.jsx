@@ -65,7 +65,7 @@ export default function Header(){
   <div className="container">
     <NavLink className="eagle-lake-regular" to="/">Radiance</NavLink>
 
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={{ color: "#00AFEF" }}>
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -84,7 +84,7 @@ export default function Header(){
 
 
 
-<div className='ms-5'>
+<div className='ms-5 mt-3'>
     <ul className="navbar-nav">
             <li className="nav-item me-4">
               <NavLink className="nav-link clickbtn" to="/pages/favorites">
