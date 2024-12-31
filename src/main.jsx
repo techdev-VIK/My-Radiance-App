@@ -5,9 +5,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
-
-import Details from './features/allProducts/Details.jsx';
-
 import Favorites from './features/Favorites/Favorites.jsx';
 
 import Cart from './features/Cart/Cart.jsx';
@@ -21,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 
 import UserInfo from './pages/UserInfo.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
+import SignUpForm from './pages/SignUpForm.jsx';
 
 
 const router = createBrowserRouter([
@@ -47,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/allProducts/:productId",
     element: <ProductDetails />
+  },
+  {
+    path: "/pages/userForm",
+    element: <SignUpForm />
   },
   {
     path: "/pages/orderPlaced",

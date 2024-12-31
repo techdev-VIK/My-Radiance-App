@@ -5,6 +5,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Link } from "react-router-dom"
+
+
 const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -73,12 +76,12 @@ const Login = () => {
 
                 {/* Error Message */}
                 {errorMessage && (
-                  <div className="alert alert-danger text-center" role="alert">
+                  <div className="alert alert-danger text-center p-2" role="alert">
                     {errorMessage}
                   </div>
                 )}
-
-                <form onSubmit={handleLogin}>
+                
+                <form onSubmit={handleLogin} className="mt-4">
                   {/* Username Input */}
                   <div className="mb-3">
                     <label htmlFor="username" className="form-label">
@@ -126,7 +129,7 @@ const Login = () => {
                   <div className="d-grid">
                     <button
                       type="submit"
-                      className="btn btn-info text-light fw-bold"
+                      className="btn btn-info text-light fw-semibold"
                     >
                       Log In
                     </button>
@@ -137,11 +140,13 @@ const Login = () => {
               <hr className="mt-4" />
 
               <p className="text-center text-muted">New User?</p>
+              <Link to="/pages/userForm">
               <div className="d-grid">
-                <button className="btn btn-success fw-bold">
+                <button className="btn btn-success fw-semibold">
                   Create Account
                 </button>
               </div>
+              </Link>
             </div>
           </div>
         </div>

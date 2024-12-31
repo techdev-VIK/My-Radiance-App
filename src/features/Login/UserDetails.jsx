@@ -1,5 +1,4 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
 
 import useFetch from "../../useFetch";
 import { useParams } from "react-router-dom";

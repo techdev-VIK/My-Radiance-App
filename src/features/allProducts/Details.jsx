@@ -1,6 +1,4 @@
-import Header from "../../components/Header";
 
-import Footer from "../../components/Footer";
 
 import { useParams } from "react-router-dom";
 
@@ -50,8 +48,7 @@ export default function Details(){
 </div></div>
     
     return(
-        <>
-         <Header />
+    <>
 
          <main className="container main-content">
          {productData && (
@@ -214,7 +211,6 @@ export default function Details(){
             
          </main>
 
-         <Footer />
-        </>
+    </>
     )
 }
