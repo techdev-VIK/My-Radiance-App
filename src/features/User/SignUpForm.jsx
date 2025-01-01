@@ -27,8 +27,8 @@ const SignUpForm = () => {
     const [reEnterPassword, setReEnterPassword] = useState( '')
     const [phoneNumber, setPhoneNumber] = useState( '')
     const [email, setEmail] = useState( '')
-    const [address, setAddress] = useState('')
-    const [alternateAddress, setAlternateAddress] = useState( '')
+    const [primaryAddress, setPrimaryAddress] = useState('')
+    const [secondaryAddress, setSecondaryAddress] = useState( '')
     const [imageUrl, setImageUrl] = useState( '')
 
     const [loading, setLoading] = useState(false);
@@ -57,8 +57,8 @@ const SignUpForm = () => {
                     setUsername(user.username || "");
                     setPhoneNumber(user.phoneNumber || "");
                     setEmail(user.emailAddress || "");
-                    setAddress(user.address || "");
-                    setAlternateAddress(user.alternateAddress || "");
+                    setPrimaryAddress(user.primaryAddress || "");
+                    setSecondaryAddress(user.secondaryAddress || "");
                     setImageUrl(user.imageUrl || "");
                 } catch (error) {
                     console.error(error.message);
@@ -84,8 +84,8 @@ const SignUpForm = () => {
             password,
             phoneNumber,
             emailAddress: email,
-            address,
-            alternateAddress,
+            primaryAddress,
+            secondaryAddress,
             imageUrl
         }
 
@@ -119,8 +119,8 @@ const SignUpForm = () => {
                 setReEnterPassword('');
                 setPhoneNumber('');
                 setEmail('');
-                setAddress('');
-                setAlternateAddress('');
+                setPrimaryAddress('');
+                setSecondaryAddress('');
                 setImageUrl('');
 
 
@@ -241,12 +241,12 @@ const SignUpForm = () => {
 
                     <div className="col-md-4 mb-2">
                         <label htmlFor="address" className="form-label">Address</label>
-                        <input type="text" className="form-control border-info" id="address" onChange={(e) => setAddress(e.target.value)} value={address} required />
+                        <input type="text" className="form-control border-info" id="address" onChange={(e) => setPrimaryAddress(e.target.value)} value={primaryAddress} required />
                     </div>
 
                     <div className="col-md-4 mb-2">
-                        <label htmlFor="altAddress" className="form-label">Alternate Address <span className="ms-1 fw-lighter">(optional)</span></label>
-                        <input type="text" className="form-control border-info" id="altAddress" onChange={(e) => setAlternateAddress(e.target.value)} value={alternateAddress}/>
+                        <label htmlFor="altAddress" className="form-label">Secondary Address <span className="ms-1 fw-lighter">(optional)</span></label>
+                        <input type="text" className="form-control border-info" id="altAddress" onChange={(e) => setSecondaryAddress(e.target.value)} value={secondaryAddress}/>
                     </div>
 
                     <div className="col-md-4 mb-4">

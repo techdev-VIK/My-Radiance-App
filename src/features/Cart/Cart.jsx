@@ -43,6 +43,9 @@ const handleRemoveFromCart = (productId) => {
     dispatch(cartActions.removeFromCart({productId}))
 }
 
+
+const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+
   
     return (
       <>
@@ -51,8 +54,11 @@ const handleRemoveFromCart = (productId) => {
           <div className="row mt-4">
             <div className="col-md-8">
 
-            <h3>My Cart:</h3>
+            <h3>My Cart ({totalCartItems})</h3>
 
+            <div className="col-md-10">
+            <hr />
+            </div>
             
             <div className="row mt-3">
                 {cartItems && cartItems.length > 0 ?(cartItems.map((product) => (

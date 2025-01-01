@@ -39,10 +39,9 @@ const Login = () => {
       );
 
       if (response.data.token) {
-        console.log("Login successful. Token:", response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", username);
-        navigate("/pages/cart");
+        navigate("/");
       } else {
         setErrorMessage(response.data.message || "Login failed. Please try again."); // Handle login errors
       }

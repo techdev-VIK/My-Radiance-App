@@ -9,6 +9,8 @@ function UserDetails() {
 
   const [passwordToggle, setPasswordToggle] = useState(false);
 
+  const [data, setData ] = useState(null);
+
   const { username } = useParams();
 
   const backendUrl = "https://radiance-backend.vercel.app"
@@ -16,13 +18,39 @@ function UserDetails() {
 
   const navigate = useNavigate();
 
-  // const {user, status, error} = useSelector((state) => state.user);
 
-  const {data, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
+  const {data: fetchedData, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
+
+
+  useEffect(() => {
+    if(fetchedData){
+        setData(fetchedData)
+    }
+  }, [fetchedData]);
 
 
   const handleEdit = () => {
     navigate(`/user/edit/${data._id}`)
+  }
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`${backendUrl}/delete/${username}`, {
+        method: "DELETE",
+        headers:{
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({ addressType: "secondaryAddress" })
+      })
+
+      if(!response.ok){
+        throw new Error("Failed to Delete Address");
+    }
+      
+    } catch (error) {
+      console.error("Error:", error);
+    }
+      
   }
 
 
@@ -89,7 +117,7 @@ function UserDetails() {
 
                   <div className="row mb-3">
                     <div className="col-4">
-                      <strong>dataname:</strong>
+                      <strong>username:</strong>
                     </div>
                     <div className="col-8">@{data.username}</div>
                   </div>
@@ -101,7 +129,14 @@ function UserDetails() {
                     <div className="col-8">{data.phoneNumber}</div>
                   </div>
 
-                  <div className="row mb-3 align-items-center">
+                  <div className="row mb-3">
+                    <div className="col-4">
+                      <strong>Email Address:</strong>
+                    </div>
+                    <div className="col-8">{data.emailAddress}</div>
+                  </div>
+
+                  <div className="row mb-3">
                     <div className="col-4">
                         <strong>Password:</strong>
                     </div>
@@ -127,28 +162,53 @@ function UserDetails() {
                     </div>
                     </div>
 
-
-                  <div className="row mb-3">
-                    <div className="col-4">
-                      <strong>Address:</strong>
-                    </div>
-                    <div className="col-8">{data.address}</div>
-                  </div>
-
-                  <div className="row mb-4">
-                    <div className="col-4">
-                      <strong>Alternate Address:</strong>
-                    </div>
-                    <div className="col-8">{data.alternateAddress}</div>
-                  </div>
-
                   <button className="clickbtn custom-btn-view" onClick={handleEdit}>Edit Details</button>
                 </div>
               </div>
+                  
+                  <div className="row mt-3">
+                  <div className="col-md-6">
+                  <div className="card shadow">
+                    <div className="card-title">
+                    <h5 className="text-info fw-semibold">Primary Address:</h5>
+                    </div>
+                      <div className="card-body">
+                      <div>{data.primaryAddress}</div>
+                      </div>
+                      <div className="d-flex justify-content-between">
+
+                      <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
+
+                      <button className="clickbtn btn btn-danger text-light mt-3 disabled" style={{width: "40%"}} onClick={handleDelete}>Delete</button>
+
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+                  
+                    
+                    {data.secondaryAddress && <div className="col-md-6">
+                    <div className="card shadow">
+                    <div className="card-title">
+                    <h5 className="text-info fw-semibold">Secondary Address:</h5>
+                    </div>
+                      <div className="card-body">
+                      <div>{data.secondaryAddress}</div>
+                      </div>
+
+                      <div className="d-flex justify-content-between">
+
+                      <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
+
+                      <button className="clickbtn btn btn-danger text-light mt-3" style={{width: "40%"}} onClick={handleDelete}>Delete</button>
+                      </div>
+                    </div>
+                    </div>}
+                  </div>
+                  
             </div>
 
-
-            
           </div>
         ) : (
           <div className="alert alert-danger">user not available</div>
