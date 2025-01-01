@@ -23,6 +23,12 @@ export const createUser = createAsyncThunk("users/createNew", async (newUser) =>
     } catch (error) {
         throw error;
     }
+});
+
+export const updateUser = createAsyncThunk("users/update", async(editUser) => {
+    const response = await axios.put(`${backendUrl}/user/edit/${editUser._id}`, editUser);
+
+    return response.data;
 })
 
 export const userSlice = createSlice({
@@ -37,25 +43,41 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchUser.pending, (state) => {
-            state.status = "loading"
+            state.status = "loading";
         }),
         builder.addCase(fetchUser.fulfilled, (state, action) => {
-            state.status = "success",
+            state.status = "success";
             state.user = action.payload
         }),
         builder.addCase(fetchUser.rejected, (state, action) => {
-            state.status = "error",
+            state.status = "error";
             state.error = action.error.message
         }),
         builder.addCase(createUser.pending, (state) => {
-            state.status = "loading"
+            state.status = "loading";
         }),
         builder.addCase(createUser.fulfilled, (state, action) => {
-            state.status = "success",
+            state.status = "success";
             state.user.push(action.payload);
         }),
         builder.addCase(createUser.rejected, (state, action) => {
-            state.status = "error",
+            state.status = "error";
+            state.error = action.error.message;
+        }),
+        builder.addCase(updateUser.pending, (state) => {
+            state.status = "loading";
+        }),
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            console.log("Update fulfilled payload:", action.payload);
+        
+            state.status = "success";
+
+            
+            state.user = action.payload
+            
+        }),
+        builder.addCase(updateUser.rejected, (state, action) => {
+            state.status = "error";
             state.error = action.error.message;
         })
     }

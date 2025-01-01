@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "./UserSlice";
+import { createUser,updateUser } from "./UserSlice";
+import { useLocation, useParams } from "react-router-dom";
 
-const SignUpForm = () => {
+const EditForm = () => {
 
+    const{id} = useParams();
 
     const dispatch = useDispatch();
 
+    const location = useLocation();
 
     const {user, status, error} = useSelector((state) => state.user);
+
+    const currentUser = location.state || {};
+
+    console.log(user)
+
+
+    useEffect(() => {
+        if(user){
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+            setUsername(user.username);
+            setPassword(user.password);
+            setPhoneNumber(user.phoneNumber);
+            setEmail(user.emailAddress);
+            setAddress(user.address);
+            setAlternateAddress(user.alternateAddress);
+            setImageUrl(user.imageUrl);
+        }
+    }, [user])
 
 
     const [passwordToggle, setPasswordToggle] = useState(false);
@@ -19,16 +41,16 @@ const SignUpForm = () => {
 
     const [passwordMatch, setPasswordMatch] = useState(true);
 
-    const [firstName, setFirstName] = useState( '')
-    const [lastName, setLastName] = useState('')
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [firstName, setFirstName] = useState(currentUser.firstName || '')
+    const [lastName, setLastName] = useState(currentUser.lastName || '')
+    const [username, setUsername] = useState(currentUser.username || '')
+    const [password, setPassword] = useState(currentUser.password || '')
     const [reEnterPassword, setReEnterPassword] = useState( '')
-    const [phoneNumber, setPhoneNumber] = useState( '')
-    const [email, setEmail] = useState( '')
-    const [address, setAddress] = useState('')
-    const [alternateAddress, setAlternateAddress] = useState( '')
-    const [imageUrl, setImageUrl] = useState( '')
+    const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber || '')
+    const [email, setEmail] = useState(currentUser.emailAddress || '')
+    const [address, setAddress] = useState(currentUser.address || '')
+    const [alternateAddress, setAlternateAddress] = useState(currentUser.alternateAddress || '')
+    const [imageUrl, setImageUrl] = useState(currentUser.imageUrl || '')
 
 
 
@@ -36,6 +58,7 @@ const SignUpForm = () => {
         e.preventDefault();
 
         const userData = {
+            _id: id,
             firstName,
             lastName,
             username,
@@ -47,6 +70,9 @@ const SignUpForm = () => {
             imageUrl
         }
 
+        if(id){
+            dispatch(updateUser(userData))
+        }else{
             dispatch(createUser(userData));
         
             setFirstName('');
@@ -62,7 +88,8 @@ const SignUpForm = () => {
             
         }
 
-    
+       
+    }
 
 
     const handleReEnterPasswordChange = (e) => {
@@ -78,16 +105,16 @@ const SignUpForm = () => {
   <span className="visually-hidden">Loading...</span>
 </div></div>
 
- const errorStatus = status==="error" && (<div className="alert alert-danger">{error}</div>)
+//  const errorStatus = status==="error" && (<div className="alert alert-danger">{error}</div>)
     
 
     return (
         <>
             <Header />
             <main className="container main-content">
-                <h3 className="my-4 fs-1">Registration Form</h3>
+                <h3 className="my-4 fs-1">{id ? "Edit Details Form" :"Registration Form"}</h3>
                 
-                {errorStatus}
+                {/* {errorStatus} */}
 
                 <form onSubmit={formHandler}>
                     <div className="col-md-4 mb-2">
@@ -182,7 +209,7 @@ const SignUpForm = () => {
                     </div>
 
                     <div className="col-12 mb-5">
-                        <button className="btn btn-info text-light fw-semibold" type="submit" disabled={!passwordMatch}>Submit Form</button>
+                        <button className="btn btn-info text-light fw-semibold" type="submit" disabled={!passwordMatch}>{id ? "Update" : "Submit Form"}</button>
                     </div>
                 </form>
             </main>
@@ -191,4 +218,4 @@ const SignUpForm = () => {
     );
 };
 
-export default SignUpForm;
+export default EditForm;

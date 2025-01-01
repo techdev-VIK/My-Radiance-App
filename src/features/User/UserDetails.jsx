@@ -1,6 +1,6 @@
 
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./UserSlice";
@@ -13,12 +13,17 @@ function UserDetails() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const {user, status, error} = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchUser(username));
   }, [dispatch])
 
+  const handleEdit = () => {
+    navigate(`/user/edit/${user._id}`, {state: user})
+  }
 
 
   if (status==="loading") {
@@ -137,7 +142,7 @@ function UserDetails() {
                     <div className="col-8">{user.alternateAddress}</div>
                   </div>
 
-                  <button className="clickbtn custom-btn-view">Edit Details</button>
+                  <button className="clickbtn custom-btn-view" onClick={handleEdit}>Edit Details</button>
                 </div>
               </div>
             </div>
