@@ -20,10 +20,9 @@ function UserDetails() {
 
   const {data, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
 
-  console.log(data)
 
   const handleEdit = () => {
-    navigate(`/user/edit/${user._id}`, {state: user})
+    navigate(`/user/edit/${data._id}`)
   }
 
 
@@ -111,7 +110,7 @@ function UserDetails() {
                             
                         </div>
                         <div className="form-control">
-                        {!passwordToggle ? "**************" : data.password}
+                        {!passwordToggle ? "********" : data.password}
                         </div>
                     </div>
                     <div className="col-2 me-auto">

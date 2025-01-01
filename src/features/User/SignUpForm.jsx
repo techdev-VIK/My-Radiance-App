@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SignUpForm = () => {
 
+    const {id} = useParams();
+
+    const isEditing = Boolean(id);
+
+    const navigate = useNavigate();
 
      const backendUrl = "https://radiance-backend.vercel.app";
 
@@ -27,6 +33,44 @@ const SignUpForm = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const [successMessage, setSuccessMessage] = useState("");
+
+    useEffect(() => {
+        
+        const username = localStorage.getItem("username");
+        if(isEditing){
+            setLoading(true);
+
+            const fetchUserdata = async () => {
+                try {
+                    const response = await fetch(`${backendUrl}/users/read/${username}`);
+
+                    if(!response.ok){
+                        throw new Error("Failed to fetch user data.")
+                    }
+                    
+                    const user = await response.json();
+
+
+                    setFirstName(user.firstName || "");
+                    setLastName(user.lastName || "");
+                    setUsername(user.username || "");
+                    setPhoneNumber(user.phoneNumber || "");
+                    setEmail(user.emailAddress || "");
+                    setAddress(user.address || "");
+                    setAlternateAddress(user.alternateAddress || "");
+                    setImageUrl(user.imageUrl || "");
+                } catch (error) {
+                    console.error(error.message);
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            fetchUserdata();
+        }
+    }, [isEditing]);
+
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -46,7 +90,11 @@ const SignUpForm = () => {
         }
 
             try {
-                const response = await fetch(`${backendUrl}/users/createNew`, {
+                const endpoint = (!isEditing )? 
+                `${backendUrl}/users/createNew` : `${backendUrl}/user/edit/${id}`;
+
+
+                const response = await fetch(endpoint, {
                     method: "POST",
                     headers: {
                         'Content-Type' : 'application/json'
@@ -58,6 +106,12 @@ const SignUpForm = () => {
                     throw new Error("Failed to create User");
                 }
 
+                setSuccessMessage(
+                    !isEditing 
+                        ? "User added successfully! Redirecting to login page in 5 seconds..." 
+                        : "User updated successfully! Redirecting to your profile in 5 seconds..."
+                );
+
                 setFirstName('');
                 setLastName('');
                 setUsername('');
@@ -68,15 +122,20 @@ const SignUpForm = () => {
                 setAddress('');
                 setAlternateAddress('');
                 setImageUrl('');
+
+
             } catch (error) {
                 console.error(error.message)
             } finally{
                 setLoading(false);
+                setTimeout(() => {
+                    setSuccessMessage("");
+                    (!isEditing ? navigate('/pages/login') : navigate(`/pages/userinfo/${username}`));
+                }, 5000);
+
             }
             
         }
-
-    
 
 
     const handleReEnterPasswordChange = (e) => {
@@ -95,8 +154,13 @@ const SignUpForm = () => {
         <>
             <Header />
             <main className="container main-content">
-                <h3 className="my-4 fs-1">Registration Form</h3>
+                <h3 className="my-4 fs-1">{isEditing ? "Edit Details" : "Registration Form"}</h3>
                 
+                {successMessage && (
+        <div className="alert alert-success" role="alert">
+            {successMessage}
+        </div>
+    )}
 
                 <form onSubmit={formHandler}>
                     <div className="col-md-4 mb-2">
@@ -191,7 +255,7 @@ const SignUpForm = () => {
                     </div>
 
                     <div className="col-12 mb-5">
-                        <button className="btn btn-info text-light fw-semibold" type="submit" disabled={!passwordMatch}>Submit Form</button>
+                        <button className="btn btn-info text-light fw-semibold" type="submit" disabled={!passwordMatch || loading}>{isEditing ? "Update" : "Submit Form"}</button>
                     </div>
                 </form>
             </main>
