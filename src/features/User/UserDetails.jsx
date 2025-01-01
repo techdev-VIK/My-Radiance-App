@@ -1,9 +1,9 @@
 
-
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "./UserSlice";
+
+
+import useFetch from '../../useFetch';
 
 function UserDetails() {
 
@@ -11,22 +11,23 @@ function UserDetails() {
 
   const { username } = useParams();
 
-  const dispatch = useDispatch();
+  const backendUrl = "https://radiance-backend.vercel.app"
+
 
   const navigate = useNavigate();
 
-  const {user, status, error} = useSelector((state) => state.user);
+  // const {user, status, error} = useSelector((state) => state.user);
 
-  useEffect(() => {
-    dispatch(fetchUser(username));
-  }, [dispatch])
+  const {data, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
+
+  console.log(data)
 
   const handleEdit = () => {
     navigate(`/user/edit/${user._id}`, {state: user})
   }
 
 
-  if (status==="loading") {
+  if (loading) {
     return (
       <div
         className="d-flex justify-content-center align-items-center"
@@ -43,7 +44,7 @@ function UserDetails() {
     );
   }
 
-  if (status==="error") {
+  if (error) {
     return <div className="alert alert-danger">{error}</div>;
   }
 
@@ -51,7 +52,7 @@ function UserDetails() {
     <>
       
       <main className="container main-content">
-        {user ? (
+        {data ? (
           <div className="row py-4">
             {/* Left Section: Profile Info */}
             <div className="col-md-4">
@@ -63,9 +64,9 @@ function UserDetails() {
                     className="img-fluid rounded-circle mb-3"
                   />
                   <h4 className="fw-bold text-info">
-                    {user.firstName} {user.lastName}
+                    {data.firstName} {data.lastName}
                   </h4>
-                  <p className="text-muted">@{user.username}</p>
+                  <p className="text-muted">@{data.username}</p>
                 </div>
               </div>
             </div>
@@ -83,22 +84,22 @@ function UserDetails() {
                       <strong>Name:</strong>
                     </div>
                     <div className="col-8">
-                      {user.firstName} {user.lastName}
+                      {data.firstName} {data.lastName}
                     </div>
                   </div>
 
                   <div className="row mb-3">
                     <div className="col-4">
-                      <strong>Username:</strong>
+                      <strong>dataname:</strong>
                     </div>
-                    <div className="col-8">@{user.username}</div>
+                    <div className="col-8">@{data.username}</div>
                   </div>
 
                   <div className="row mb-3">
                     <div className="col-4">
                       <strong>Phone Number:</strong>
                     </div>
-                    <div className="col-8">{user.phoneNumber}</div>
+                    <div className="col-8">{data.phoneNumber}</div>
                   </div>
 
                   <div className="row mb-3 align-items-center">
@@ -110,7 +111,7 @@ function UserDetails() {
                             
                         </div>
                         <div className="form-control">
-                        {!passwordToggle ? "**************" : user.password}
+                        {!passwordToggle ? "**************" : data.password}
                         </div>
                     </div>
                     <div className="col-2 me-auto">
@@ -132,14 +133,14 @@ function UserDetails() {
                     <div className="col-4">
                       <strong>Address:</strong>
                     </div>
-                    <div className="col-8">{user.address}</div>
+                    <div className="col-8">{data.address}</div>
                   </div>
 
                   <div className="row mb-4">
                     <div className="col-4">
                       <strong>Alternate Address:</strong>
                     </div>
-                    <div className="col-8">{user.alternateAddress}</div>
+                    <div className="col-8">{data.alternateAddress}</div>
                   </div>
 
                   <button className="clickbtn custom-btn-view" onClick={handleEdit}>Edit Details</button>

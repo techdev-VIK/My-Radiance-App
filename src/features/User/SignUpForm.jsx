@@ -1,16 +1,11 @@
 import { useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "./UserSlice";
 
 const SignUpForm = () => {
 
 
-    const dispatch = useDispatch();
-
-
-    const {user, status, error} = useSelector((state) => state.user);
+     const backendUrl = "https://radiance-backend.vercel.app";
 
 
     const [passwordToggle, setPasswordToggle] = useState(false);
@@ -30,10 +25,13 @@ const SignUpForm = () => {
     const [alternateAddress, setAlternateAddress] = useState( '')
     const [imageUrl, setImageUrl] = useState( '')
 
+    const [loading, setLoading] = useState(false);
 
 
-    const formHandler = (e) => {
+    const formHandler = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
 
         const userData = {
             firstName,
@@ -47,18 +45,34 @@ const SignUpForm = () => {
             imageUrl
         }
 
-            dispatch(createUser(userData));
-        
-            setFirstName('');
-            setLastName('');
-            setUsername('');
-            setPassword('');
-            setReEnterPassword('');
-            setPhoneNumber('');
-            setEmail('');
-            setAddress('');
-            setAlternateAddress('');
-            setImageUrl('');
+            try {
+                const response = await fetch(`${backendUrl}/users/createNew`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify(userData),
+                });
+
+                if(!response.ok){
+                    throw new Error("Failed to create User");
+                }
+
+                setFirstName('');
+                setLastName('');
+                setUsername('');
+                setPassword('');
+                setReEnterPassword('');
+                setPhoneNumber('');
+                setEmail('');
+                setAddress('');
+                setAlternateAddress('');
+                setImageUrl('');
+            } catch (error) {
+                console.error(error.message)
+            } finally{
+                setLoading(false);
+            }
             
         }
 
@@ -73,13 +87,9 @@ const SignUpForm = () => {
         setPasswordMatch(value===password);
     }
 
-
-    if (status === "loading") return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-info" style={{width: "5rem", height: "5rem"}} role="status">
+        if (loading) return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-info" style={{width: "5rem", height: "5rem"}} role="status">
   <span className="visually-hidden">Loading...</span>
 </div></div>
-
- const errorStatus = status==="error" && (<div className="alert alert-danger">{error}</div>)
-    
 
     return (
         <>
@@ -87,7 +97,6 @@ const SignUpForm = () => {
             <main className="container main-content">
                 <h3 className="my-4 fs-1">Registration Form</h3>
                 
-                {errorStatus}
 
                 <form onSubmit={formHandler}>
                     <div className="col-md-4 mb-2">
@@ -133,12 +142,12 @@ const SignUpForm = () => {
 
 
                     <div className="col-md-4 mb-2">
-                        <label htmlFor="password" className="form-label">Repeat Password</label>
+                        <label htmlFor="Repeatpassword" className="form-label">Repeat Password</label>
                         <div className="input-group">
                             <input 
                                 type={rePasswordToggle ? "text" : "password"} 
                                 className={ `form-control border-info ${!passwordMatch && "is-invalid"}`} 
-                                id="password"
+                                id="Repeatpassword"
                                 onChange={handleReEnterPasswordChange} value={reEnterPassword} 
                                 required 
                             />

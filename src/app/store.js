@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { productsSlice } from "../features/allProducts/productsSlice";
 import { cartSlice } from "../features/Cart/CartSlice";
 import favoritesSlice from "../features/Favorites/favoritesSlice";
-import { userSlice } from "../features/User/UserSlice";
 
 
 const radianceStore =  configureStore({
@@ -10,7 +9,6 @@ const radianceStore =  configureStore({
         products: productsSlice.reducer,
         cart: cartSlice.reducer,
         favorites: favoritesSlice.reducer,
-        user: userSlice.reducer,
         
     }
 })

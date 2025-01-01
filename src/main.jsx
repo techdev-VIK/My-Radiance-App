@@ -19,7 +19,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import UserInfo from './pages/UserInfo.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
 import SignUpForm from './features/User/SignUpForm.jsx';
-import EditForm from './features/User/EditForm.jsx';
+// import EditForm from './features/User/EditForm.jsx';
 
 
 const router = createBrowserRouter([
@@ -51,10 +51,10 @@ const router = createBrowserRouter([
     path: "/pages/userForm",
     element: <SignUpForm />
   },
-  {
-    path: "/user/edit/:id",
-    element: <PrivateRoute><EditForm /></PrivateRoute>
-  },
+  // {
+  //   path: "/user/edit/:id",
+  //   element: <PrivateRoute><EditForm /></PrivateRoute>
+  // },
   {
     path: "/pages/orderPlaced",
     element: <PrivateRoute><OrderPlaced /></PrivateRoute>
