@@ -30,6 +30,9 @@ body, html {
   transition: transform 1s, ease-in-out;
 }
 
+.shadow-box {
+  box-shadow: 8px 8px 12px rgb(5, 206, 221);
+}
 
 
 input[type="range"] {

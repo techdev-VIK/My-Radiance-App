@@ -108,8 +108,8 @@ const SignUpForm = () => {
 
                 setSuccessMessage(
                     !isEditing 
-                        ? "User added successfully! Redirecting to login page in 5 seconds..." 
-                        : "User updated successfully! Redirecting to your profile in 5 seconds..."
+                        ? "User added successfully! Redirecting to login page in 3 seconds..." 
+                        : "User updated successfully! Redirecting to your profile in 3 seconds..."
                 );
 
                 setFirstName('');
@@ -131,7 +131,7 @@ const SignUpForm = () => {
                 setTimeout(() => {
                     setSuccessMessage("");
                     (!isEditing ? navigate('/pages/login') : navigate(`/pages/userinfo/${username}`));
-                }, 5000);
+                }, 3000);
 
             }
             

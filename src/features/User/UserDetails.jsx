@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 
 
 import useFetch from '../../useFetch';
+import { useDispatch } from "react-redux";
+import { setUserData } from "./UserSlice";
 
 function UserDetails() {
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [passwordToggle, setPasswordToggle] = useState(false);
 
@@ -13,10 +19,7 @@ function UserDetails() {
 
   const { username } = useParams();
 
-  const backendUrl = "https://radiance-backend.vercel.app"
-
-
-  const navigate = useNavigate();
+  const backendUrl = "https://radiance-backend.vercel.app";
 
 
   const {data: fetchedData, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
@@ -24,9 +27,10 @@ function UserDetails() {
 
   useEffect(() => {
     if(fetchedData){
-        setData(fetchedData)
+        setData(fetchedData);
+        dispatch(setUserData(fetchedData))
     }
-  }, [fetchedData]);
+  }, [fetchedData, dispatch]);
 
 
   const handleEdit = () => {
@@ -172,7 +176,7 @@ function UserDetails() {
                   
                   <div className="row">
                   <div className="col-md-6 mt-3">
-                  <div className="card shadow">
+                  <div className="card shadow h-100">
                     <div className="card-title">
                     <h5 className="text-info fw-semibold">Primary Address:</h5>
                     </div>
@@ -193,7 +197,7 @@ function UserDetails() {
                   
                     
                     {data.secondaryAddress ? (<div className="col-md-6 mt-3">
-                    <div className="card shadow">
+                    <div className="card shadow h-100">
                     <div className="card-title">
                     <h5 className="text-info fw-semibold">Secondary Address:</h5>
                     </div>
