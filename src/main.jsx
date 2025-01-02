@@ -18,8 +18,9 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 
 import UserInfo from './pages/UserInfo.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
-import SignUpForm from './features/User/SignUpForm.jsx';
-import ShippingAddress from './features/Cart/ShippingAddress.jsx';
+import SignUpForm from './pages/SignUpForm.jsx';
+
+import ShippingAddress from './pages/ShippingAddress.jsx';
 
 
 const router = createBrowserRouter([

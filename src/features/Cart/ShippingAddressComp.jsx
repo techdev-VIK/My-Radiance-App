@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import { useDispatch } from "react-redux";
 import useFetch from "../../useFetch";
 import { useEffect } from "react";
@@ -8,7 +6,7 @@ import { setUserData } from "../User/UserSlice";
 import { cartActions } from "./CartSlice";
 import { useNavigate } from "react-router-dom";
 
-const ShippingAddress = () => {
+const ShippingAddressComp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const username = localStorage.getItem("username");
@@ -59,7 +57,6 @@ const ShippingAddress = () => {
 
   return (
     <>
-      <Header />
       <main className="container mt-5 main-content py-5">
         <h4 className="fw-semibold">Please Select Your Shipping Address:</h4>
         <div className="col-md-6">
@@ -90,7 +87,7 @@ const ShippingAddress = () => {
 
             <div className="row">
               <div className="col-md-6">
-                {data && data.secondaryAddress && (
+                {data && data.secondaryAddress && data.secondaryAddress !== data.primaryAddress && (
                   <div
                     className={`card ${selectedAddress === data.secondaryAddress ? "shadow-box" : ""}`}
                     onClick={() => handleCardClick(data.secondaryAddress)}
@@ -136,7 +133,7 @@ const ShippingAddress = () => {
                 </div>
               </div>
               <div className="card-footer text-center">
-                <button className="btn btn-info w-100" onClick={handleOrderNow}>
+                <button className="btn btn-info text-light w-100" onClick={handleOrderNow}>
                   Order Now
                 </button>
               </div>
@@ -145,9 +142,8 @@ const ShippingAddress = () => {
           
         </div>
       </main>
-      <Footer />
     </>
   );
 };
 
-export default ShippingAddress;
+export default ShippingAddressComp;

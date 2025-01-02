@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+
 import { useNavigate, useParams } from "react-router-dom";
 
-const SignUpForm = () => {
+const SignUpFormComp = () => {
 
     const {id} = useParams();
 
@@ -152,7 +151,7 @@ const SignUpForm = () => {
 
     return (
         <>
-            <Header />
+            
             <main className="container main-content">
                 <h3 className="mt-4 fs-1">{isEditing ? "Edit Details" : "Registration Form"}</h3>
                 
@@ -266,9 +265,8 @@ const SignUpForm = () => {
                     </div>
                 </form>
             </main>
-            <Footer />
         </>
     );
 };
 
-export default SignUpForm;
+export default SignUpFormComp;
