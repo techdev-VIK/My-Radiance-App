@@ -84,7 +84,7 @@ export default function Header(){
 
 
 
-<div className='ms-5 mt-3'>
+<div className='ms-5 mt-2'>
     <ul className="navbar-nav">
             <li className="nav-item me-4">
               <NavLink className="nav-link clickbtn" to="/pages/favorites">
@@ -128,7 +128,7 @@ export default function Header(){
 
             <li className="nav-item me-4">
               
-              <button className='custom-btn-search p-1 mt-2 click-btn' onClick={handleLogout}>
+              <button className='custom-btn-search p-1 mt-1 click-btn' onClick={handleLogout}>
               {isLoggedIn ? "Logout" : "Login"}
               </button>
                 

@@ -154,13 +154,20 @@ const SignUpForm = () => {
         <>
             <Header />
             <main className="container main-content">
-                <h3 className="my-4 fs-1">{isEditing ? "Edit Details" : "Registration Form"}</h3>
+                <h3 className="mt-4 fs-1">{isEditing ? "Edit Details" : "Registration Form"}</h3>
                 
+                <div className="col-md-6 mb-4">
                 {successMessage && (
-        <div className="alert alert-success" role="alert">
-            {successMessage}
+                <div className="alert alert-success" role="alert">
+                    {successMessage}
+                </div>)}
+                
         </div>
-    )}
+   
+
+            <div className="col-md-6 mb-4">
+                <hr />
+            </div>
 
                 <form onSubmit={formHandler}>
                     <div className="col-md-4 mb-2">

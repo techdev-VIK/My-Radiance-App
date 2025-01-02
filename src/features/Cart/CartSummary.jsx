@@ -50,11 +50,19 @@ const CartSummary = () => {
     }, [cartItems])
 
 
-    const handlePlaceOrder = () => {
-        dispatch(cartActions.clearCart());
+    // const handlePlaceOrder = () => {
+    //     dispatch(cartActions.clearCart());
 
-        navigate("/pages/orderPlaced");
-    }
+    //     navigate("/pages/orderPlaced");
+    // }
+
+
+    const handlePlaceOrder = () => {
+
+      navigate("/pages/cart/shipping");
+  }
+
+    
 
 
     return (

@@ -46,6 +46,10 @@ function UserDetails() {
       if(!response.ok){
         throw new Error("Failed to Delete Address");
     }
+
+    setData((prevData) => ({
+      ...prevData, secondaryAddress: null
+    }));
       
     } catch (error) {
       console.error("Error:", error);
@@ -166,8 +170,8 @@ function UserDetails() {
                 </div>
               </div>
                   
-                  <div className="row mt-3">
-                  <div className="col-md-6">
+                  <div className="row">
+                  <div className="col-md-6 mt-3">
                   <div className="card shadow">
                     <div className="card-title">
                     <h5 className="text-info fw-semibold">Primary Address:</h5>
@@ -179,7 +183,7 @@ function UserDetails() {
 
                       <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
 
-                      <button className="clickbtn btn btn-danger text-light mt-3 disabled" style={{width: "40%"}} onClick={handleDelete}>Delete</button>
+                      <button className="clickbtn btn btn-danger text-light mt-3 disabled" style={{width: "40%"} }>Delete</button>
 
                       </div>
                       
@@ -188,7 +192,7 @@ function UserDetails() {
                   </div>
                   
                     
-                    {data.secondaryAddress && <div className="col-md-6">
+                    {data.secondaryAddress ? (<div className="col-md-6 mt-3">
                     <div className="card shadow">
                     <div className="card-title">
                     <h5 className="text-info fw-semibold">Secondary Address:</h5>
@@ -201,10 +205,33 @@ function UserDetails() {
 
                       <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
 
-                      <button className="clickbtn btn btn-danger text-light mt-3" style={{width: "40%"}} onClick={handleDelete}>Delete</button>
+                      <button className="clickbtn btn btn-danger text-light mt-3" data-bs-toggle="modal" data-bs-target="#deleteModal"  style={{width: "40%"}} >Delete</button>
+
+                      <div className="modal fade" id="deleteModal" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h1 className="modal-title fs-5" id="deleteModalLabel">Confirm Delete</h1>
+                              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                              Are you sure you want to delete this address?
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" className="clickbtn custom-btn-view" data-bs-dismiss="modal" onClick={handleDelete}>Confirm</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       </div>
                     </div>
-                    </div>}
+                    </div>) : (<div className="col-md-6 mt-3">
+                      <div className="card h-100 d-flex justify-content-center align-items-center">
+                  
+                      <button className="clickbtn btn btn-outline-success fw-semibold" onClick={handleEdit}>+ Add Secondary Address</button>
+
+                      </div></div>)}
                   </div>
                   
             </div>

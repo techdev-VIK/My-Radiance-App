@@ -99,7 +99,7 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                     <button className='clickbtn custom-btn-view text-center w-100' onClick={() => handleRemoveFromCart(product.productId)}>Remove From Cart</button>
                     </div>
                 </div>
-                ))): (<div className='alert alert-danger'>No Products Available in the Cart.</div>)}
+                ))): (<div className='alert alert-danger col-md-6'>No Products Available in the Cart.</div>)}
             </div>
             </div>
 
