@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { cartActions } from "./CartSlice";
 
 const CartSummary = () => {
 
     const cartItems = useSelector((state) => state.cart.cartProducts);
 
-    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -49,12 +47,6 @@ const CartSummary = () => {
         
     }, [cartItems])
 
-
-    // const handlePlaceOrder = () => {
-    //     dispatch(cartActions.clearCart());
-
-    //     navigate("/pages/orderPlaced");
-    // }
 
 
     const handlePlaceOrder = () => {
