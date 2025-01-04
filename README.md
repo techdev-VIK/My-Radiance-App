@@ -67,5 +67,5 @@ https://my-radiance-app.vercel.app/
 
 ## Radiance - App Walkthrough - Watch Video
 
-https://www.loom.com/share/2dd5b3fdc6924e19ad63e166242295c0?sid=4a3293ea-83c1-467f-a955-2fe6446a767d
+https://www.loom.com/share/59a1c355ab744987a74fa2cb9e476b79?sid=2c57cedb-8be7-4ee4-8daf-5595b3d6948f
 
