@@ -65,3 +65,7 @@ Radiance is an e-commerce application that has product listings for various beau
 https://my-radiance-app.vercel.app/
 
 
+## Radiance - App Walkthrough - Watch Video
+
+https://www.loom.com/share/2dd5b3fdc6924e19ad63e166242295c0?sid=4a3293ea-83c1-467f-a955-2fe6446a767d
+
