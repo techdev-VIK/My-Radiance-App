@@ -4,7 +4,7 @@ Radiance is an e-commerce application that has product listings for various beau
 
 ## Technology Stack
 
-* React - Reducer + Context
+* React with Redux Toolkit
 * Styling using Bootstrap
 * React Router v6 (beta) for routes
 * Express & Node for API Repo Link
