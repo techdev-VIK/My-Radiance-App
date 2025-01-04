@@ -18,9 +18,10 @@ Radiance is an e-commerce application that has product listings for various beau
 * List of products - fetched via ExpressAPI
 * Product detail page
 * Search for products
-* Wishlist buttons from across the app pages
-* Add to cart button from across the app pages
+* Wishlist buttons - Functional across the app pages
+* Add to cart buttons - Functional across the app pages
 * Increment/decrement quantity for products added to cart. (Go to cart)
+* Marks as Favorite for products added.
 
 
 #### Filters as follows:
@@ -33,8 +34,7 @@ Radiance is an e-commerce application that has product listings for various beau
 ### 2. Cart
 * Cart item list
 * Remove item from cart
-* Increment/decrement item quantity on cart from across the app pages
-* Move from cart to wishlist
+* Increment/decrement item quantity on cart across the app pages
 * Total items present in the cart with the overall cost
 * Checkout to address data management
 
@@ -48,7 +48,7 @@ Radiance is an e-commerce application that has product listings for various beau
 ### 4. Authentication using JWT
 
 * Login form - existing users
-* Private route - login, wishlist and checkout
+* Private routes - login, wishlist and checkout
 * Create New Account - New Users
 * Data stored on MongoDB
 
