@@ -6,10 +6,9 @@ Radiance is an e-commerce application that has product listings for various beau
 
 * React with Redux Toolkit
 * Styling using Bootstrap
-* React Router v6 (beta) for routes
+* React Router for routes
 * Express & Node for API Repo Link
 * MongoDB using mongoose for data storage
-* Jest test cases for reducer 
 
 
 ## Functionalities
@@ -29,18 +28,19 @@ Radiance is an e-commerce application that has product listings for various beau
 - _Category_
 - _Rating_
 - _Sort by Price_
+- _Search Option across all pages_
 
 
 ### 2. Cart
 * Cart item list
 * Remove item from cart
-* Increment/decrement item quantity on cart across the app pages
+* Increment/decrement item quantity on cart across the app pages via reducers
 * Total items present in the cart with the overall cost
 * Checkout to address data management
 
 
 ### 3. Wishlist
-* Wishlist item list
+* Wishlist item list (via reducers)
 * Remove from wishlist
 * Move from wishlist to cart
 
