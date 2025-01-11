@@ -169,7 +169,7 @@ const ShippingAddressComp = () => {
 
             <div className="row">
               <div className="col-md-6 mt-3">
-                <button className="btn btn-outline-success fw-semibold" onClick={otherAddressHandler}>+ Add Address</button>
+                <button className="btn btn-success fw-semibold" onClick={otherAddressHandler}>+ Add Address</button>
               </div>
             </div>
               
@@ -180,7 +180,7 @@ const ShippingAddressComp = () => {
 
                     </textarea>
                     
-                    <div className="d-flex justify-content-between mt-2">
+                    <div className="d-flex justify-content-between mt-3">
                       <button type="submit" className="btn btn-sm btn-outline-success">Submit</button>
                       <button className="btn btn-sm btn-outline-danger" onClick={cancelOtherAddressForm}>Cancel</button>
                     </div>
