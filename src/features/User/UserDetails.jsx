@@ -102,13 +102,14 @@ function UserDetails() {
                   <img
                     src={data.imageUrl ? data.imageUrl : `https://placehold.co/200?text=${data.firstName.slice(0,1)}${data.lastName.slice(0,1)}`}
                     alt="User"
-                    className="img-fluid rounded-circle mb-3"
+                    className="img-fluid rounded-circle mb-4"
                     style={{ width: '200px', height: '200px', objectFit: 'cover' }}
                   />
-                  <h4 className="fw-bold text-info">
+                  <h4 className="fw-bold text-info mb-4">
                     {data.firstName} {data.lastName}
                   </h4>
-                  <p className="text-muted">@{data.username}</p>
+                  <h6 className="fw-normal">@{data.username}</h6>
+
                 </div>
               </div>
             </div>
@@ -156,9 +157,6 @@ function UserDetails() {
                         <strong>Password:</strong>
                     </div>
                     <div className="col-3">
-                        <div>
-                            
-                        </div>
                         <div className="form-control">
                         {!passwordToggle ? "********" : data.password}
                         </div>
