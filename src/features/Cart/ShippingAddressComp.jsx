@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../../useFetch";
 import { useEffect } from "react";
 import { setUserData } from "../User/UserSlice";
 import { cartActions } from "./CartSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const ShippingAddressComp = () => {
   const dispatch = useDispatch();
@@ -15,8 +17,20 @@ const ShippingAddressComp = () => {
   // Fetch user data
   const { data, loading, error } = useFetch(`${backendUrl}/users/read/${username}`);
 
+
+  const {userData} = useSelector((state) => state.user)
+
+
   // State to track selected address
   const [selectedAddress, setSelectedAddress] = useState("");
+
+  const [otherAddressForm, setOtherAddressForm] = useState(false);
+
+  const [getOtherAddress, setOtherAddress] = useState('');
+
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+
 
   useEffect(() => {
     if (data) {
@@ -37,6 +51,48 @@ const ShippingAddressComp = () => {
         dispatch(cartActions.clearCart());
 
         navigate("/pages/orderPlaced");
+    }
+
+
+
+    const otherAddressHandler = () => {
+      setOtherAddressForm(true);
+    }
+
+
+    const cancelOtherAddressForm = () => {
+      setOtherAddressForm(false)
+    }
+
+
+    const formHandlerOtherAddress = async(e) => {
+      e.preventDefault();
+
+      try {
+        const response = await axios.post(`${backendUrl}/add/otherAddress/${username}`, {
+          username,
+          newAddress: getOtherAddress,
+        })
+
+        if (response.data) {
+          // Fetch updated user data
+          const updatedData = await axios.get(`${backendUrl}/users/read/${username}`);
+          
+
+          dispatch(setUserData(updatedData.data));
+          setSelectedAddress(updatedData.data.otherAddresses.at(-1));
+    
+          setIsFormSubmitted(true);
+          // Reset form state
+          setOtherAddressForm(false);
+          setOtherAddress("");
+        }
+        
+        
+      } catch (error) {
+        console.error('Error in adding the address', error);
+      }
+
     }
 
 
@@ -67,7 +123,7 @@ const ShippingAddressComp = () => {
           {/* Address Selection Section */}
           <div className="col-md-8">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-8">
                 {data && (
                   <div
                     className={`card mb-3 ${selectedAddress === data.primaryAddress ? "shadow-box" : ""}`}
@@ -86,7 +142,7 @@ const ShippingAddressComp = () => {
             </div>
 
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-8">
                 {data && data.secondaryAddress && data.secondaryAddress !== data.primaryAddress && (
                   <div
                     className={`card ${selectedAddress === data.secondaryAddress ? "shadow-box" : ""}`}
@@ -103,6 +159,55 @@ const ShippingAddressComp = () => {
                 )}
               </div>
             </div>
+
+
+            <h4 className="fw-semibold mt-4">Ship To Different Address?</h4>
+            <div className="col-md-8">
+              <hr />
+            </div>
+
+
+            <div className="row">
+              <div className="col-md-6 mt-3">
+                <button className="btn btn-outline-success fw-semibold" onClick={otherAddressHandler}>+ Add Address</button>
+              </div>
+            </div>
+              
+              {otherAddressForm && <div className="row">
+                <div className="col-md-8 mt-4">
+                  <form onSubmit={formHandlerOtherAddress}>
+                    <textarea className="form-control" onChange={(e) => setOtherAddress(e.target.value)} value={getOtherAddress} required >
+
+                    </textarea>
+                    
+                    <div className="d-flex justify-content-between mt-2">
+                      <button type="submit" className="btn btn-sm btn-outline-success">Submit</button>
+                      <button className="btn btn-sm btn-outline-danger" onClick={cancelOtherAddressForm}>Cancel</button>
+                    </div>
+                  </form>
+              </div>
+              </div>}
+              
+
+              <div className="col-md-8">
+              {isFormSubmitted && userData?.otherAddresses?.slice(-1).map((address, index) => (
+                <div
+                  key={index}
+                  className={`card ${selectedAddress === address ? "shadow-box" : ""} mt-3`}
+                  onClick={() => handleCardClick(address)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="card-title">
+                  <h5 className="text-info fw-semibold">Shipping Address:</h5>
+                  </div>
+                  <div className="card-body">
+                    {address}
+                  </div>
+                </div>
+              ))}
+              </div>
+              
+
           </div>
 
           {/* Shipping Details Card */}
