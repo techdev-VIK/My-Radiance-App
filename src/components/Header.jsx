@@ -41,6 +41,8 @@ export default function Header(){
 
   const favorites = useSelector((state) => state.favorites.favProducts);
 
+  const wishlists = useSelector((state) => state.wishlist.wishlistProducts);
+
 
   // Calculate the total number of items in the cart
   const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
@@ -91,6 +93,17 @@ export default function Header(){
                 <span className="bi bi-heart position-relative" style={{ fontSize: '1.5rem', color: "#00AFEF" }}>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.95rem', padding: '2px 6px', lineHeight: '1' }}>
                   {favorites.length > 9 ? "9+" : favorites.length}
+                </span>
+                </span>
+                </NavLink>
+            </li>
+
+            <li className="nav-item me-4">
+              
+              <NavLink className="nav-link clickbtn" to="/pages/wishlist">
+                <span className="bi bi-bookmark-heart position-relative" style={{ fontSize: '1.5rem', color: "#00AFEF" }}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.95rem', padding: '2px 6px', lineHeight: '1' }}>
+                {wishlists.length > 9 ? "9+" : wishlists.length}
                 </span>
                 </span>
                 </NavLink>

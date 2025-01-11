@@ -4,7 +4,7 @@ import FavsHeart from "./FavsHeart";
 
 import AddToCart from "./AddToCart";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, fromWishlist = false}) => {
 
     return (
         <>
@@ -19,7 +19,7 @@ const ProductCard = ({product}) => {
                 </div>
                 </Link>
                 <FavsHeart product={product}/>
-                <AddToCart product={product} />
+                <AddToCart product={product} fromWishlist={fromWishlist}/>
             </div>
             
         </>

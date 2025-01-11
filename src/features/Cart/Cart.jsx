@@ -7,10 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "./CartSlice";
 import CartSummary from "./CartSummary";
 
+import { wishlistActions } from "../Saved for Later/wishlistSlice";
 
 function Cart(){
 
     const cartItems = useSelector((state) => state.cart.cartProducts);
+
+    const wishlists = useSelector((state) => state.wishlist.wishlistProducts)
 
     const dispatch = useDispatch();
 
@@ -44,6 +47,31 @@ const handleRemoveFromCart = (productId) => {
 }
 
 
+
+const handleSaveForLater = (productId) => {
+
+  const product = cartItems.find((item) => item.productId === productId)
+
+  if (!product) {
+
+    return;
+  }
+
+  const isWishlist = wishlists.some((item) => item.productId === product.productId);
+
+  // console.log(isWishlist);
+
+
+  if(!isWishlist){
+    dispatch(wishlistActions.addToWishlist(product))
+  
+    dispatch(cartActions.removeFromCart({productId}))
+  }else{
+    dispatch(cartActions.removeFromCart({productId}))
+  }
+}
+
+
 const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
 
   
@@ -72,7 +100,10 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                     />
                      <div className='card-body'>
                       <div className='text-center mb-2 fixed-height'><strong>{product.productName}</strong></div>
-                      <div className='text-center mb-2'>{product.productCategory}</div>
+
+                      <div className='text-center mb-2'><strong>Size: </strong>{product.productQuantity}</div>
+
+                      <div className='text-center text-success mb-2'>In Stock</div>
                       
                       <div className="text-center my-3">
                         
@@ -96,8 +127,25 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                     </div>
                     </div>
 
-                    <button className='clickbtn custom-btn-view text-center w-100' onClick={() => handleRemoveFromCart(product.productId)}>Remove From Cart</button>
+                    <div className="btn-group w-100" role="group">
+                    <button 
+                      className="btn btn-sm btn-outline-success w-50 p-2" 
+                      onClick={() => handleSaveForLater(product.productId)}
+                    >
+                      <i className="bi bi-save2 me-1"></i>Save For Later
+                    </button>
+                    <button 
+                      className="btn btn-sm btn-outline-danger w-50 p-2" 
+                      onClick={() => handleRemoveFromCart(product.productId)}
+                    >
+                      <i className="bi bi-trash me-1"></i>Delete
+                    </button>
+                  </div>
+
+
                     </div>
+
+                    
                 </div>
                 ))): (<div className='alert alert-danger col-md-6'>No Products Available in the Cart.</div>)}
             </div>

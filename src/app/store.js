@@ -3,6 +3,7 @@ import { productsSlice } from "../features/allProducts/productsSlice";
 import { cartSlice } from "../features/Cart/CartSlice";
 import favoritesSlice from "../features/Favorites/favoritesSlice";
 import userSlice from "../features/User/UserSlice";
+import wishlistSlice from "../features/Saved for Later/wishlistSlice";
 
 
 const radianceStore =  configureStore({
@@ -10,7 +11,8 @@ const radianceStore =  configureStore({
         products: productsSlice.reducer,
         cart: cartSlice.reducer,
         favorites: favoritesSlice.reducer,
-        user: userSlice.reducer
+        user: userSlice.reducer,
+        wishlist: wishlistSlice.reducer,
         
     }
 })
