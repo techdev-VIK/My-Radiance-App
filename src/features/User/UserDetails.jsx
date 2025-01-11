@@ -94,7 +94,7 @@ function UserDetails() {
               <div className="card mt-5 shadow">
                 <div className="card-body text-center">
                   <img
-                    src="https://placehold.co/150?text=U"
+                    src={data.imageUrl ? data.imageUrl : `https://placehold.co/200?text=${data.firstName.slice(0,1)}${data.lastName.slice(0,1)}`}
                     alt="User"
                     className="img-fluid rounded-circle mb-3"
                   />
