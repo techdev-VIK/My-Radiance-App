@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 
 import useFetch from '../../useFetch';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "./UserSlice";
 
 function UserDetails() {
@@ -20,6 +20,8 @@ function UserDetails() {
   const { username } = useParams();
 
   const backendUrl = "https://radiance-backend.vercel.app";
+
+  const {userData} = useSelector((state) => state.user)
 
 
   const {data: fetchedData, loading, error} = useFetch(`${backendUrl}/users/read/${username}`)
@@ -57,8 +59,12 @@ function UserDetails() {
       
     } catch (error) {
       console.error("Error:", error);
-    }
-      
+    }  
+  }
+
+
+  const otherAddressDeleteHandler = () => {
+
   }
 
 
@@ -183,11 +189,9 @@ function UserDetails() {
                       <div className="card-body">
                       <div>{data.primaryAddress}</div>
                       </div>
-                      <div className="d-flex justify-content-between">
+                      <div className="d-flex justify-content-end">
 
-                      <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
-
-                      <button className="clickbtn btn btn-danger text-light mt-3 disabled" style={{width: "40%"} }>Delete</button>
+                      <button className="clickbtn btn btn-sm btn-danger text-light mt-3 disabled">Delete</button>
 
                       </div>
                       
@@ -205,11 +209,9 @@ function UserDetails() {
                       <div>{data.secondaryAddress}</div>
                       </div>
 
-                      <div className="d-flex justify-content-between">
+                      <div className="d-flex justify-content-end">
 
-                      <button className="clickbtn custom-btn-view text-light mt-3" style={{width: "40%"}} onClick={handleEdit}>Edit</button>
-
-                      <button className="clickbtn btn btn-danger text-light mt-3" data-bs-toggle="modal" data-bs-target="#deleteModal"  style={{width: "40%"}} >Delete</button>
+                      <button className="clickbtn btn btn-sm btn-danger text-light mt-3" data-bs-toggle="modal" data-bs-target="#deleteModal"  >Delete</button>
 
                       <div className="modal fade" id="deleteModal" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered">
@@ -222,7 +224,7 @@ function UserDetails() {
                               Are you sure you want to delete this address?
                             </div>
                             <div className="modal-footer">
-                              <button type="button" className="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                               <button type="button" className="clickbtn custom-btn-view" data-bs-dismiss="modal" onClick={handleDelete}>Confirm</button>
                             </div>
                           </div>
@@ -236,11 +238,68 @@ function UserDetails() {
                       <button className="clickbtn btn btn-outline-success fw-semibold" onClick={handleEdit}>+ Add Secondary Address</button>
 
                       </div></div>)}
-                  </div>
-                  
-            </div>
 
-          </div>
+                      
+                      <div className="col-md-12 mt-4">
+                        <hr />
+                        <h4>Other Addresses</h4>
+                      </div>
+
+
+                      {userData?.otherAddresses.map((address, index) => (
+                        <div key={index} className="col-md-6">
+                        <div className="card shadow mt-3">
+                          <div className="card-title">
+                            <h5 className="text-info fw-semibold">Other Address {index + 1}:</h5>
+                          </div>
+                          <div className="card-body">
+                            <div>{address}</div>
+                          </div>
+
+                          <div className="d-flex justify-content-end">
+                            
+                            <button
+                              className="clickbtn btn btn-sm btn-danger text-light mt-3"
+                              data-bs-toggle="modal"
+                              data-bs-target="#deleteModal"
+                            >
+                              Delete
+                            </button>
+                            
+                            <div className="modal fade" id="deleteModal" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                              <div className="modal-dialog modal-dialog-centered">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="deleteModalLabel">Confirm Delete</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div className="modal-body">
+                                    Are you sure you want to delete this address?
+                                  </div>
+                                  <div className="modal-footer">
+                                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                      Cancel
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="clickbtn custom-btn-view"
+                                      data-bs-dismiss="modal"
+                                      onClick={otherAddressDeleteHandler}
+                                    >
+                                      Confirm
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  </div>
         ) : (
           <div className="alert alert-danger">user not available</div>
         )}
