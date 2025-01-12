@@ -103,7 +103,6 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
 
                       <div className='text-center mb-2'><strong>Size: </strong>{product.productQuantity}</div>
 
-                      <div className='text-center text-success mb-2'>In Stock</div>
                       
                       <div className="text-center my-3">
                         

@@ -283,7 +283,7 @@ function UserDetails() {
                           <div className="card-body">
                             <div>{expanded ? address : `${address.slice(0,20)}`} {address.length > 20 && (
                             <span className="text-secondary btn-link" style={{ cursor: 'pointer', textDecoration: 'none' }} onClick={() => setExpanded((prev) => !prev)}>
-                              {expanded ? 'show less' : '...show more'}
+                              {expanded ? '...show less' : '...show more'}
                             </span>
                           )
                         }</div>
