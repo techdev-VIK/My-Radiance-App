@@ -17,7 +17,9 @@ const ShippingAddressComp = () => {
   // Fetch user data
   const { data, loading, error } = useFetch(`${backendUrl}/users/read/${username}`);
 
+  // console.log(data);
 
+  
   const {userData} = useSelector((state) => state.user)
 
 

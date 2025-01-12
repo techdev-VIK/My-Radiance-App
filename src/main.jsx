@@ -28,6 +28,7 @@ import SignUpForm from './pages/SignUpForm.jsx';
 
 import ShippingAddress from './pages/ShippingAddress.jsx';
 import Wishlist from './features/Saved for Later/Wishlist.jsx';
+import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: "/pages/cart/shipping",
     element: <PrivateRoute><ShippingAddress /></PrivateRoute>
+  },
+  {
+    path: "/pages/user/order/history",
+    element: <PrivateRoute><OrderHistoryPage /></PrivateRoute>
   },
   {
     path: "/pages/wishlist",

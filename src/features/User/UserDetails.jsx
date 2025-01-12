@@ -42,6 +42,10 @@ function UserDetails() {
     navigate(`/user/edit/${data._id}`)
   }
 
+  const handleOrderHistory = () => {
+    navigate(`/pages/user/order/history`)
+  }
+
   const handleDelete = async () => {
     try {
       const response = await fetch(`${backendUrl}/delete/${username}`, {
@@ -120,10 +124,10 @@ function UserDetails() {
       
       <main className="container main-content">
         {data ? (
-          <div className="row py-4">
+          <div className="row my-4">
             {/* Left Section: Profile Info */}
             <div className="col-md-4">
-              <div className="card mt-5 shadow">
+              <div className="card mt-3 shadow">
                 <div className="card-body text-center">
                   <img
                     src={data.imageUrl ? data.imageUrl : `https://placehold.co/200?text=${data.firstName.slice(0,1)}${data.lastName.slice(0,1)}`}
@@ -138,11 +142,27 @@ function UserDetails() {
 
                 </div>
               </div>
+
+              <div className="card shadow mt-3">
+                <div className="card-title">
+                  <h4 className="text-info fw-semibold">Your Orders:</h4>
+                </div>
+
+                <div className="card-body p-2">
+                <div>
+                  Check Your Recent Order Here...
+                </div>
+                <button className="btn btn-sm btn-success mt-4" onClick={handleOrderHistory}>Orders History</button>
+                </div>
+              </div>
             </div>
+
+
+            
 
             {/* Right Section: User Details */}
             <div className="col-md-8">
-              <div className="card mt-5 shadow">
+              <div className="card mt-3 shadow">
                 <div className="card-body">
                   <h5 className="card-title mb-4 text-info fs-3">
                     User Details
@@ -201,7 +221,11 @@ function UserDetails() {
                     </div>
                     </div>
 
-                  <button className="clickbtn custom-btn-view" onClick={handleEdit}>Edit Details</button>
+                  
+                  <button className="btn btn-sm btn-info text-light" onClick={handleEdit}>Edit Details</button>
+
+                
+                  
                 </div>
               </div>
                   
@@ -234,7 +258,7 @@ function UserDetails() {
                     </div>
                       <div className="card-body">
 
-                      <div>{data.secondary}</div>
+                      <div>{data.secondaryAddress}</div>
                       </div>
 
                       <div className="d-flex justify-content-end">
@@ -270,7 +294,7 @@ function UserDetails() {
                       
                       <div className="col-md-12 mt-4">
                         <hr />
-                        <h4>Other Addresses</h4>
+                        <h4>Other Addresses:</h4>
                       </div>
 
 
