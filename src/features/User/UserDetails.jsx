@@ -193,7 +193,7 @@ function UserDetails() {
                         onClick={() => setPasswordToggle(!passwordToggle)}
                         >
                         {!passwordToggle ? (
-                            <i className="bi bi-eye-slash-fill tetx-danger"></i>
+                            <i className="bi bi-eye-slash-fill text-dark"></i>
                         ) : (
                             <i className="bi bi-eye-fill text-dark"></i>
                         )}

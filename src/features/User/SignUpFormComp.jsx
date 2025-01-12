@@ -153,7 +153,7 @@ const SignUpFormComp = () => {
         <>
             
             <main className="container main-content">
-                <h3 className="mt-4 fs-1">{isEditing ? "Edit Details" : "Registration Form"}</h3>
+                <h2 className="mt-4">{isEditing ? "Edit Details" : "Registration Form"}</h2>
                 
                 <div className="col-md-6 mb-4">
                 {successMessage && (

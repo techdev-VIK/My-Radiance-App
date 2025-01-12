@@ -116,9 +116,9 @@ const Login = () => {
                         onClick={() => setPasswordToggle(!passwordToggle)}
                       >
                         {passwordToggle ? (
-                          <i className="bi bi-eye-slash-fill text-dark"></i>
-                        ) : (
                           <i className="bi bi-eye-fill text-dark"></i>
+                        ) : (
+                          <i className="bi bi-eye-slash-fill text-dark"></i>
                         )}
                       </button>
                     </div>

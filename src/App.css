@@ -130,6 +130,12 @@ input[type="range"] {
   border-color: var(--theme-color)!important; /* Button border color */
 }
 
+.btn-outline-info {
+  background-color: whitesmoke!important; /* Button background color */
+  color: white !important; /* Text color */
+  border-color: var(--theme-color)!important; /* Button border color */
+}
+
 .bg-info {
   background-color: var(--theme-color)!important; /* Button background color */
   border-color: var(--theme-color)!important; /* Button border color */
