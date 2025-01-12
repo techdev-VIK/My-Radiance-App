@@ -35,6 +35,7 @@ function UserDetails() {
   }, [fetchedData, dispatch]);
 
 
+
   const handleEdit = () => {
     navigate(`/user/edit/${data._id}`)
   }
@@ -63,9 +64,32 @@ function UserDetails() {
   }
 
 
-  const otherAddressDeleteHandler = () => {
+  const otherAddressDeleteHandler = async (username, address) => {
+    try {
+      const response = await fetch(`${backendUrl}/delete/otherAddress/${username}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ addressToRemove: address }),
+      });
+  
+      if (response.ok) {
+  
+        setData((prevData) => {
+          const updatedData = {
+              ...prevData,
+              otherAddresses: prevData.otherAddresses.filter((add) => add !== address),
+          };
+          dispatch(setUserData(updatedData));
+          return updatedData;
+      });
 
-  }
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+  
+  
 
 
   if (loading) {
@@ -260,12 +284,12 @@ function UserDetails() {
                             <button
                               className="clickbtn btn btn-sm btn-danger text-light mt-3"
                               data-bs-toggle="modal"
-                              data-bs-target="#deleteModal"
+                              data-bs-target={`#deleteModal-${index}`}
                             >
                               Delete
                             </button>
                             
-                            <div className="modal fade" id="deleteModal" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`deleteModal-${index}`} aria-labelledby="deleteModalLabel" aria-hidden="true">
                               <div className="modal-dialog modal-dialog-centered">
                                 <div className="modal-content">
                                   <div className="modal-header">
@@ -283,7 +307,7 @@ function UserDetails() {
                                       type="button"
                                       className="clickbtn custom-btn-view"
                                       data-bs-dismiss="modal"
-                                      onClick={otherAddressDeleteHandler}
+                                      onClick={() => otherAddressDeleteHandler(username, address)}
                                     >
                                       Confirm
                                     </button>
