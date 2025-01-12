@@ -9,7 +9,7 @@ const ProductCard = ({product, fromWishlist = false}) => {
     return (
         <>
             <div className='card p-0 shadow-sm hover-zoom'>
-            <Link to={`/allProducts/${product.productId}`} className="text-decoration-none text-dark">
+            <Link to={`/allProducts/${product._id}`} className="text-decoration-none text-dark">
                 <img src={product.productImageUrl ? product.productImageUrl : "https://placehold.co/600x400?text=R"} alt={product.productName} className='card-img-top img-fluid' />
                 <div className='card-body'>
                     <div className='text-center mb-2 fixed-height'><strong>{product.productName}</strong></div>

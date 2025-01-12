@@ -31,7 +31,7 @@ export default function Details(){
     const productId = useParams();
     // console.log(productId)
 
-    const productData = products?.find((item) => item.productId === Number(productId.productId));
+    const productData = products?.find((item) => item._id === (productId.productId));
 
     // console.log(productData)
 
