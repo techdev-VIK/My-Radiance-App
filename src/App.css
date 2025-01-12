@@ -21,6 +21,9 @@ body, html {
   flex: 1; /* Push footer to the bottom by taking available space */
 }
 
+.btn-info{
+  color: #00AFEF;
+}
 
 .clickbtn:active {
   transform: scale(0.97);
@@ -28,10 +31,12 @@ body, html {
 
 .clickbtn {
   transition: transform 1s, ease-in-out;
+
 }
 
 .shadow-box {
   box-shadow: 8px 8px 12px #00AFEF;
+  transform: scale(1.03);
 }
 
 

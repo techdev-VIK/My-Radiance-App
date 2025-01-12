@@ -15,6 +15,8 @@ function UserDetails() {
 
   const [passwordToggle, setPasswordToggle] = useState(false);
 
+  const [expanded, setExpanded] = useState(false);
+
   const [data, setData ] = useState(null);
 
   const { username } = useParams();
@@ -210,7 +212,9 @@ function UserDetails() {
                     <h5 className="text-info fw-semibold">Primary Address:</h5>
                     </div>
                       <div className="card-body">
+                      
                       <div>{data.primaryAddress}</div>
+                      
                       </div>
                       <div className="d-flex justify-content-end">
 
@@ -229,7 +233,8 @@ function UserDetails() {
                     <h5 className="text-info fw-semibold">Secondary Address:</h5>
                     </div>
                       <div className="card-body">
-                      <div>{data.secondaryAddress}</div>
+
+                      <div>{data.secondary}</div>
                       </div>
 
                       <div className="d-flex justify-content-end">
@@ -276,11 +281,18 @@ function UserDetails() {
                             <h5 className="text-info fw-semibold">Other Address {index + 1}:</h5>
                           </div>
                           <div className="card-body">
-                            <div>{address}</div>
-                          </div>
+                            <div>{expanded ? address : `${address.slice(0,20)}`} {address.length > 20 && (
+                            <span className="text-secondary btn-link" style={{ cursor: 'pointer', textDecoration: 'none' }} onClick={() => setExpanded((prev) => !prev)}>
+                              {expanded ? 'show less' : '...show more'}
+                            </span>
+                          )
+                        }</div>
+                        </div>
+                          
+
 
                           <div className="d-flex justify-content-end">
-                            
+                          
                             <button
                               className="clickbtn btn btn-sm btn-danger text-light mt-3"
                               data-bs-toggle="modal"

@@ -169,7 +169,7 @@ const ShippingAddressComp = () => {
 
             <div className="row">
               <div className="col-md-6 mt-3">
-                <button className="btn btn-success fw-semibold" onClick={otherAddressHandler}>+ Add Address</button>
+                <button className="btn btn-outline-success fw-semibold clickbtn" onClick={otherAddressHandler}>+ Add Address</button>
               </div>
             </div>
               
