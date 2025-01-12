@@ -261,7 +261,7 @@ const SignUpFormComp = () => {
                     </div>
 
                     <div className="col-12 mb-5">
-                        <button className="btn btn-info text-light fw-semibold" type="submit" disabled={!passwordMatch || loading}>{isEditing ? "Update" : "Submit Form"}</button>
+                        <button className="btn btn-info text-light" type="submit" disabled={!passwordMatch || loading}>{isEditing ? "Update" : "Submit Form"}</button>
                     </div>
                 </form>
             </main>

@@ -21,9 +21,6 @@ body, html {
   flex: 1; /* Push footer to the bottom by taking available space */
 }
 
-.btn-info{
-  color: #00AFEF;
-}
 
 .clickbtn:active {
   transform: scale(0.97);
@@ -60,7 +57,7 @@ input[type="range"] {
 
 .hover-zoom:hover {
   transform: scale(1.02); /* Slight zoom */
-  box-shadow: 0 8px 20px rgb(5, 223, 243); /* Enhance shadow */
+  box-shadow: 0 8px 20px var(--theme-color); /* Enhance shadow */
   transition: transform 0.2s, box-shadow 1s ease-in-out;
 }
 
@@ -68,7 +65,7 @@ input[type="range"] {
   font-family: "Eagle Lake", serif;
   font-weight: 600;
   font-style: normal;
-  color: #00AFEF;
+  color: var(--theme-color);
   font-size: 1.5rem;
   text-decoration: none;
 }
@@ -125,6 +122,26 @@ input[type="range"] {
   padding: 0.45rem 0.8rem;
   border-radius: 20px;
   text-decoration: none;
+}
+
+
+.btn-info {
+  background-color: var(--theme-color)!important; /* Button background color */
+  border-color: var(--theme-color)!important; /* Button border color */
+}
+
+.bg-info {
+  background-color: var(--theme-color)!important; /* Button background color */
+  border-color: var(--theme-color)!important; /* Button border color */
+}
+
+
+.text-info {
+  color: var(--theme-color)!important; /* Text color */
+}
+
+.bg-color{
+  background-color: var(--theme-color)
 }
 
 .fixed-height {

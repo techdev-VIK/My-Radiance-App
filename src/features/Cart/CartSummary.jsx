@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -66,12 +66,12 @@ const CartSummary = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mb-2">
-                    <span className="fs-6">Items Cost:</span>
+                    <span className="fs-6">Item(s) Cost:</span>
                     <span className="fs-6 fw-bold">₹{totalMrp}</span>
                   </div>
 
                   <div className="d-flex justify-content-between mb-2">
-                    <span className="fs-6">Discount:</span>
+                    <span className="fs-6">Total Discount:</span>
                     <span className="fs-6 fw-bold">₹{totalDiscountedMrp}</span>
                   </div>
 

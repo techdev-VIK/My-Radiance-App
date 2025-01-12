@@ -214,7 +214,7 @@ const ShippingAddressComp = () => {
 
           {data && (<div className="col-md-4">
             <div className="card shadow" style={{ position: "sticky", top: "100px" }}>
-              <div className="card-header bg-info text-white">
+              <div className="card-header text-white bg-color">
                 <h5 className="mb-0">Shipping Details</h5>
               </div>
               <div className="card-body">
