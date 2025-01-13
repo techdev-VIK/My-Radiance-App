@@ -131,8 +131,8 @@ input[type="range"] {
 }
 
 .btn-outline-info {
-  background-color: whitesmoke!important; /* Button background color */
-  color: white !important; /* Text color */
+  background-color: white!important; /* Button background color */
+  color: var(--theme-color) !important; /* Text color */
   border-color: var(--theme-color)!important; /* Button border color */
 }
 

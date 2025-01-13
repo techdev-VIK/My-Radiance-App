@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';  
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link, useParams } from 'react-router-dom'; // Import Link for navigation
 
 function OrderHistory() {
+  const username = localStorage.getItem("username");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +14,7 @@ function OrderHistory() {
     // Fetch orders when the component mounts
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/allOrders`); 
+        const response = await axios.get(`${backendUrl}/allOrders/${username}`);
         setOrders(response.data);
         setLoading(false);
       } catch (err) {
@@ -23,7 +24,7 @@ function OrderHistory() {
     };
 
     fetchOrders();
-  }, []);
+  }, [username]);
 
   if (loading) return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}>
@@ -40,7 +41,7 @@ function OrderHistory() {
       <h2>Orders History</h2>
       <hr />
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <div className='alert alert-danger'>No orders found.</div>
       ) : (
         <div className="row">
           {orders.map((order) => (

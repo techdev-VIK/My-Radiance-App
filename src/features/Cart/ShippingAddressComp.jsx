@@ -22,6 +22,8 @@ const ShippingAddressComp = () => {
   
   const {userData} = useSelector((state) => state.user)
 
+  const cartItems = useSelector((state) => state.cart.cartProducts);
+
 
   // State to track selected address
   const [selectedAddress, setSelectedAddress] = useState("");
@@ -50,6 +52,14 @@ const ShippingAddressComp = () => {
 
 
    const handleOrderNow = () => {
+
+      try {
+        
+      } catch (error) {
+        
+      }
+
+
         dispatch(cartActions.clearCart());
 
         navigate("/pages/orderPlaced");
