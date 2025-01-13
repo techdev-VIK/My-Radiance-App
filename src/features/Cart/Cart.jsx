@@ -23,7 +23,7 @@ function Cart(){
       const product = cartItems.find((item) => item._id === productId);
       
       if(product){
-        dispatch(cartActions.updateQuantity({productId, quantity: product.quantity + 1}))
+        dispatch(cartActions.updateQuantity({productId: product._id, quantity: product.quantity + 1}))
       }
     };
 

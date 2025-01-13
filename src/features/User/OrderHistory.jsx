@@ -50,26 +50,25 @@ function OrderHistory() {
                 <div className="row g-0">
                   <div className="col-md-4">
                     <img
-                      src={order.productImageUrl || "https://placehold.co/200?text=Product"}
-                      alt={order.productName}
+                      src={order.items[0]?.itemId.productImageUrl || "https://placehold.co/200?text=Product"}
+                      alt={order.items[0]?.name}
                       className="img-fluid rounded-start" 
                       style={{objectFit: "cover", height: "100%"}}
                     />
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
-                      <h5 className="card-title">{order.productName}</h5>
                       <p className="card-text">
-                        <strong>Order ID: </strong>{order._id}
+                        <strong>Order ID: </strong>#{order._id}
                       </p>
                       <p className="card-text">
                         <strong>Date: </strong>{new Date(order.createdAt).toLocaleDateString()}
                       </p>
                       <p className="card-text">
-                        <strong>Total Amount: </strong>₹{order.totalAmount}
+                        <strong>Shipping Address: </strong>{order.shippingAddress}
                       </p>
                       
-                      <Link to={`/order-details/${order._id}`} className="btn btn-info text-light">View Details</Link>
+                      <Link to={`/order/history/details/${order._id}`} className="btn btn-info text-light">View Details</Link>
                     </div>
                   </div>
                 </div>

@@ -29,6 +29,7 @@ import SignUpForm from './pages/SignUpForm.jsx';
 import ShippingAddress from './pages/ShippingAddress.jsx';
 import Wishlist from './features/Saved for Later/Wishlist.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
+import OrderHistoryDetailsPage from './pages/OrderHistoryDetailsPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/pages/user/order/history",
     element: <PrivateRoute><OrderHistoryPage /></PrivateRoute>
+  },
+  {
+    path: "/order/history/details/:detailId",
+    element: <PrivateRoute><OrderHistoryDetailsPage /></PrivateRoute>
   },
   {
     path: "/pages/wishlist",

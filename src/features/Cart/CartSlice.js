@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 export const cartSlice = createSlice({
@@ -10,7 +10,7 @@ export const cartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            const productIndex = state.cartProducts.findIndex((item) => item._id === action.payload.productId);
+            const productIndex = state.cartProducts.findIndex((item) => item._id === action.payload._id);
 
             if(productIndex >= 0){
                 state.cartProducts[productIndex].quantity += 1;

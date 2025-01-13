@@ -51,18 +51,38 @@ const ShippingAddressComp = () => {
   };
 
 
-   const handleOrderNow = () => {
+   const handleOrderNow = async() => {
 
-      try {
-        
-      } catch (error) {
-        
+      const orderData = {
+        userId: userData._id,
+        items: cartItems.map((item) => ({
+          itemId: item._id,
+          name: item.productName,
+          quantity: item.quantity,
+          price: item.productMRP
+        })),
+        shippingAddress: selectedAddress
       }
 
+      console.log(orderData);
 
-        dispatch(cartActions.clearCart());
+      try {
+          const response = await axios.post(`${backendUrl}/order/create`, orderData);
 
-        navigate("/pages/orderPlaced");
+          if(response.data){
+            dispatch(cartActions.clearCart());
+
+            navigate("/pages/orderPlaced");
+          }
+      } catch (error) {
+        console.error('Error placing order:', error);
+
+        if (error.response) {
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+          console.error('Response headers:', error.response.headers);
+        }
+      }
     }
 
 
