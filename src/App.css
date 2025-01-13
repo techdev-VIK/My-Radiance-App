@@ -31,7 +31,7 @@ body, html {
 }
 
 .shadow-box {
-  box-shadow: 8px 8px 12px #00AFEF;
+  box-shadow: 8px 8px 12px var(--theme-color);
   transform: scale(1.03);
 }
 
@@ -95,7 +95,7 @@ input[type="range"] {
 
 .custom-btn-search {
   background-color: var(--theme-color);
-  color: rgb(255, 255, 255);
+  color: white;
   border: 2px solid var(--theme-color);
   border-radius: 7px;
   width: 70px;

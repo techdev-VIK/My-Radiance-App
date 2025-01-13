@@ -36,15 +36,24 @@ function OrderHistory() {
 
   if (error) return <div>{error}</div>;
 
+ 
+
   return (
-    <main className="container main-content my-3">
+    <main className="container main-content my-4">
       <h2>Orders History</h2>
       <hr />
       {orders.length === 0 ? (
         <div className='alert alert-danger'>No orders found.</div>
       ) : (
         <div className="row">
-          {orders.map((order) => (
+          {orders.map((order) => {
+            
+            //Find total items
+            const totalItems = order.items.reduce((total, item) => {
+                return total + item.quantity;
+              }, 0);
+
+          return(
             <div key={order._id} className="col-md-6 mb-4">
               <div className="card shadow p-0">
                 <div className="row g-0">
@@ -58,23 +67,26 @@ function OrderHistory() {
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
-                      <p className="card-text">
-                        <strong>Order ID: </strong>#{order._id}
-                      </p>
+                      <div className="card-header p-0 mb-3">
+                        <strong>Order #: </strong>{order._id}
+                      </div>
                       <p className="card-text">
                         <strong>Date: </strong>{new Date(order.createdAt).toLocaleDateString()}
                       </p>
                       <p className="card-text">
+                        <strong>Items Ordered: </strong>{(totalItems)}
+                      </p>
+                      <p className="card-text fixed-height">
                         <strong>Shipping Address: </strong>{order.shippingAddress}
                       </p>
                       
-                      <Link to={`/order/history/details/${order._id}`} className="btn btn-info text-light">View Details</Link>
+                      <Link to={`/order/history/details/${order._id}`} className="btn btn-sm btn-info text-light">View Details</Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+            )})}
         </div>
       )}
     </main>

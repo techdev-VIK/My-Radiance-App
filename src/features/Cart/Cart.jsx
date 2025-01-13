@@ -82,7 +82,7 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
           <div className="row mt-4">
             <div className="col-md-8">
 
-            <h3>My Cart ({totalCartItems})</h3>
+            <h2>My Cart ({totalCartItems})</h2>
 
             <div className="col-md-10">
             <hr />

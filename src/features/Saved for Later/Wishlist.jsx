@@ -18,7 +18,7 @@ const Wishlist = () => {
             <div className="row mt-4">
 
                 <div className="col-md-9">
-                    <h3>Saved For Later ({wishlists.length})</h3>
+                    <h2>Saved For Later ({wishlists.length})</h2>
 
                     <hr />
 

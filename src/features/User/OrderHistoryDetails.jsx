@@ -38,30 +38,35 @@ function OrderHistoryDetails() {
 
   if (error) return <div>{error}</div>;
 
-  if (!detailedOrder) return <div>Order not found.</div>; // Handle case where order is not found
+  if (!detailedOrder) return <div className='alert alert-danger'>Order not found.</div>; // Handle case where order is not found
 
   const totalAmount = detailedOrder.items.reduce((total, item) => {
     return total + item.quantity * item.itemId.productMRP;
   }, 0);
 
   return (
-    <main className="container main-content my-3">
-      <h2>Orders Details</h2>
+    <main className="container main-content my-4">
+      <h2>Order Details</h2>
+
+      <div className='col-md-8'>
       <hr />
+      </div>
+      
       <div className="row">
-        <div key={detailedOrder._id} className="col-md-6 mb-4">
+        <div key={detailedOrder._id} className="col-md-8 mb-4">
+        
           <div className="card shadow">
             <div className="row g-0">
               <div className="col-md-12">
                 
                 <div className="card-header p-3">
-                <h5 className="card-title mb-1">Order ID: #{detailedOrder._id}</h5>
+                <h5 className="card-title mb-1">Order #: {detailedOrder._id}</h5>
                 <hr />
-                  <div className="d-flex justify-content-between align-items-center mt-2">
-                    <div className="col-md-6">
+                  <div className="d-flex justify-content-between mt-2">
+                    <div className="col-md-8 d-flex justify-content-start">
                       <p><strong>Shipping Address: </strong>{detailedOrder.shippingAddress}</p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 d-flex justify-content-end">
                       <p><strong>Date: </strong>{new Date(detailedOrder.createdAt).toLocaleDateString()}</p>
                     </div>
                   </div>
@@ -77,15 +82,15 @@ function OrderHistoryDetails() {
                           style={{objectFit: "cover", height: "100%"}}
                         />
                       </div>
-                      <div className="col-md-8">
+                      <div className="col-md-8 mt-3">
                         <h6>{item.itemId.productName}</h6>
                         <p><strong>Quantity: </strong>{item.quantity}</p>
-                        <p><strong>Price: </strong>₹{item.itemId.productMRP}</p>
+                        <p><strong>Price: </strong>₹{item.itemId.productMRP}<span className='ms-2 text-secondary fw-light'>(per item)</span></p>
                       </div>
                     </div>
                   ))}
                   <hr />
-                  <h6 className='text-center mt-2 fw-semibold bg-info p-2 text-light'>Total Amount: ₹{totalAmount}</h6>
+                  <h6 className='text-center mt-2 fw-semibold bg-info p-2 text-light'>Total Amount Paid: ₹{totalAmount}</h6>
                 </div>
               </div>
             </div>

@@ -35,7 +35,6 @@ const ShippingAddressComp = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 
-
   useEffect(() => {
     if (data) {
       dispatch(setUserData(data));
@@ -64,7 +63,7 @@ const ShippingAddressComp = () => {
         shippingAddress: selectedAddress
       }
 
-      console.log(orderData);
+      // console.log(orderData);
 
       try {
           const response = await axios.post(`${backendUrl}/order/create`, orderData);
@@ -77,11 +76,6 @@ const ShippingAddressComp = () => {
       } catch (error) {
         console.error('Error placing order:', error);
 
-        if (error.response) {
-          console.error('Response data:', error.response.data);
-          console.error('Response status:', error.response.status);
-          console.error('Response headers:', error.response.headers);
-        }
       }
     }
 

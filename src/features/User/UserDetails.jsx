@@ -145,14 +145,15 @@ function UserDetails() {
 
               <div className="card shadow mt-3">
                 <div className="card-title">
-                  <h4 className="text-info fw-semibold">Your Orders:</h4>
+                  <h5 className="text-info fw-semibold">My Orders:</h5>
                 </div>
 
-                <div className="card-body p-2">
-                <div>
-                  Check Your Recent Order Here...
+                <div className="card-body">
+                  Check Your Orders History Here
                 </div>
-                <button className="btn btn-sm btn-success mt-4" onClick={handleOrderHistory}>Orders History</button>
+                
+                <div className="d-flex justify-content-end">
+                <button className="btn btn-sm btn-info text-light" onClick={handleOrderHistory}>My Orders</button>
                 </div>
               </div>
             </div>
@@ -223,8 +224,6 @@ function UserDetails() {
 
                   
                   <button className="btn btn-sm btn-info text-light" onClick={handleEdit}>Edit Details</button>
-
-                
                   
                 </div>
               </div>
@@ -242,7 +241,7 @@ function UserDetails() {
                       </div>
                       <div className="d-flex justify-content-end">
 
-                      <button className="clickbtn btn btn-sm btn-danger text-light mt-3 disabled">Delete</button>
+                      <button className="clickbtn btn btn-sm btn-danger text-light disabled">Delete</button>
 
                       </div>
                       
@@ -307,7 +306,7 @@ function UserDetails() {
                           <div className="card-body">
                             <div>{expanded ? address : `${address.slice(0,20)}`} {address.length > 20 && (
                             <span className="text-secondary btn-link" style={{ cursor: 'pointer', textDecoration: 'none' }} onClick={() => setExpanded((prev) => !prev)}>
-                              {expanded ? '...show less' : '...show more'}
+                              {expanded ? '(Show less)' : '...Show more'}
                             </span>
                           )
                         }</div>
@@ -318,7 +317,7 @@ function UserDetails() {
                           <div className="d-flex justify-content-end">
                           
                             <button
-                              className="clickbtn btn btn-sm btn-danger text-light mt-3"
+                              className="clickbtn btn btn-sm btn-danger text-light"
                               data-bs-toggle="modal"
                               data-bs-target={`#deleteModal-${index}`}
                             >

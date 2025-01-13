@@ -26,7 +26,7 @@ function Favorites() {
 
             <div className="col-md-9">
 
-                <h3>My Favorites ({favorites.length})</h3>
+                <h2>My Favorites ({favorites.length})</h2>
           
             <hr />
 
