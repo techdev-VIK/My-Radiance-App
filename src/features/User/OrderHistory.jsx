@@ -26,6 +26,23 @@ function OrderHistory() {
     fetchOrders();
   }, [username]);
 
+
+  const sortByDateHandler = (e) => {
+    
+    const {value} = e.target;
+
+    let sortedOrders = [...orders];
+
+
+    if(value === "Newest"){
+        sortedOrders.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }else if(value === "Oldest"){
+        sortedOrders.sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
+
+    setOrders(sortedOrders);
+  }
+
   if (loading) return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}>
       <div className="spinner-border text-info" style={{width: "5rem", height: "5rem"}} role="status">
@@ -40,8 +57,20 @@ function OrderHistory() {
 
   return (
     <main className="container main-content my-4">
+
+      <div className='d-flex justify-content-between align-items-center'>
+
       <h2>Orders History</h2>
+
+      <select className='form-select' onChange={sortByDateHandler} style={{width: "auto"}}>
+        <option value="" selected disabled>-- Sort By --</option>
+        <option value="Newest">Newest First</option>
+        <option value="Oldest">Oldest First</option>
+      </select>
+      </div>
+
       <hr />
+
       {orders.length === 0 ? (
         <div className='alert alert-danger'>No orders found.</div>
       ) : (

@@ -91,7 +91,7 @@ const CartSummary = () => {
 
                   <p className="mt-3 text-success">Sold By: Radiance Co.</p>
                   <button className="clickbtn custom-btn-view-rounded text-center w-100" onClick={handlePlaceOrder}>
-                    Place Order
+                    Checkout
                   </button>
                 </div>
               </div>

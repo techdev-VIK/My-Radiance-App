@@ -153,7 +153,7 @@ function UserDetails() {
                 </div>
                 
                 <div className="d-flex justify-content-end">
-                <button className="btn btn-sm btn-info text-light" onClick={handleOrderHistory}>My Orders</button>
+                <button className="btn btn-sm btn-info text-light mt-3" onClick={handleOrderHistory}>My Orders</button>
                 </div>
               </div>
             </div>
@@ -241,7 +241,7 @@ function UserDetails() {
                       </div>
                       <div className="d-flex justify-content-end">
 
-                      <button className="clickbtn btn btn-sm btn-danger text-light disabled">Delete</button>
+                      <button className="clickbtn btn btn-sm btn-danger text-light disabled mt-3">Delete</button>
 
                       </div>
                       
@@ -317,7 +317,7 @@ function UserDetails() {
                           <div className="d-flex justify-content-end">
                           
                             <button
-                              className="clickbtn btn btn-sm btn-danger text-light"
+                              className="clickbtn btn btn-sm btn-danger text-light mt-3"
                               data-bs-toggle="modal"
                               data-bs-target={`#deleteModal-${index}`}
                             >
