@@ -20,7 +20,7 @@ function Cart(){
 
     const handleIncrement = (productId) => {
 
-      const product = cartItems.find((item) => item.productId === productId);
+      const product = cartItems.find((item) => item._id === productId);
       
       if(product){
         dispatch(cartActions.updateQuantity({productId, quantity: product.quantity + 1}))
@@ -29,7 +29,7 @@ function Cart(){
 
     const handleDecrement = (productId) => {
 
-      const product = cartItems.find((item) => item.productId === productId);
+      const product = cartItems.find((item) => item._id === productId);
       
       if(product){
         if(product.quantity > 1){
@@ -50,14 +50,14 @@ const handleRemoveFromCart = (productId) => {
 
 const handleSaveForLater = (productId) => {
 
-  const product = cartItems.find((item) => item.productId === productId)
+  const product = cartItems.find((item) => item._id === productId)
 
   if (!product) {
 
     return;
   }
 
-  const isWishlist = wishlists.some((item) => item.productId === product.productId);
+  const isWishlist = wishlists.some((item) => item._id === product.productId);
 
   // console.log(isWishlist);
 
@@ -106,7 +106,7 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                       
                       <div className="text-center my-3">
                         
-                        <button type="button" className="clickbtn btn btn-outline-danger fw-bold" onClick={() => handleDecrement(product.productId)}>-</button>
+                        <button type="button" className="clickbtn btn btn-outline-danger fw-bold" onClick={() => handleDecrement(product._id)}>-</button>
                         <div style={{
                             display: "inline-block",
                             width: "30px",
@@ -116,7 +116,7 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                         >
                           {product.quantity}
                         </div>
-                        <button type="button" className="clickbtn btn btn-outline-success fw-bold" onClick={() => handleIncrement(product.productId)}>+</button>
+                        <button type="button" className="clickbtn btn btn-outline-success fw-bold" onClick={() => handleIncrement(product._id)}>+</button>
                         
                       </div>
                       
@@ -129,13 +129,13 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                     <div className="btn-group w-100" role="group">
                     <button 
                       className="btn btn-sm btn-outline-success w-50 p-2" 
-                      onClick={() => handleSaveForLater(product.productId)}
+                      onClick={() => handleSaveForLater(product._id)}
                     >
                       <i className="bi bi-save2 me-1"></i>Save For Later
                     </button>
                     <button 
                       className="btn btn-sm btn-outline-danger w-50 p-2" 
-                      onClick={() => handleRemoveFromCart(product.productId)}
+                      onClick={() => handleRemoveFromCart(product._id)}
                     >
                       <i className="bi bi-trash me-1"></i>Delete
                     </button>

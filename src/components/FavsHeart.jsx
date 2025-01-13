@@ -5,7 +5,7 @@ function FavsHeart({product}){
     
     const favorites = useSelector((state) => state.favorites.favProducts)
 
-    const isFavorite = favorites.some((item) => item.productId === product.productId);
+    const isFavorite = favorites.some((item) => item._id === product._id);
 
     const dispatch = useDispatch();
 
