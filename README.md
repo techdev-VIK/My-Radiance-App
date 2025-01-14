@@ -86,17 +86,17 @@ You can set up and run this project as below:
 
 1) Clone this repository to your local machine:
 
-git clone https://github.com/your-username/radiance.git
+- git clone https://github.com/your-username/radiance.git
 
 
 2) Navigate into the project directory:
 
-cd radiance
+- cd radiance
 
 
 3) Install dependencies:
 
-npm install
+- npm install
 
 
 ### Available Scripts
