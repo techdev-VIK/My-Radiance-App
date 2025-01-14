@@ -11,6 +11,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { persistor } from './app/store.js';
+
 import Favorites from './features/Favorites/Favorites.jsx';
 
 import Cart from './features/Cart/Cart.jsx';
@@ -99,7 +103,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={radianceStore}>
-    <RouterProvider router = {router} />
+      <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router = {router} />
+      </PersistGate>
     </Provider>
   </StrictMode>,
 )

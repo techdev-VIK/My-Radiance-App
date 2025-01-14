@@ -130,11 +130,9 @@ function PlaceOrderAndPay() {
             </table>
           </div>
 
-          <hr />
-
           <div className="d-flex justify-content-center mt-4">
-            <button className="btn btn-success btn-lg" onClick={handlePlaceOrderAndPay} disabled={loading}>
-            {loading ? "Processing..." : "Place Order"}
+            <button className="btn btn-info text-light btn-lg clickbtn" onClick={handlePlaceOrderAndPay} disabled={loading}>
+            {loading ? "Processing..." : "Place My Order"}
             </button>
           </div>
         </div>
