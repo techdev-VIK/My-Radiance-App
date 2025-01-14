@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { cartActions } from './CartSlice';
 
 import axios from "axios";
@@ -76,7 +76,7 @@ function PlaceOrderAndPay() {
 
   return (
     <main className="container my-4">
-      <h2 className="text-center mb-4">Review Your Order</h2>
+      <h2 className="text-center mb-4">Review My Order</h2>
 
       <div className="card shadow">
         <div className="card-header bg-info text-light">
@@ -132,7 +132,7 @@ function PlaceOrderAndPay() {
 
           <div className="d-flex justify-content-center mt-4">
             <button className="btn btn-info text-light btn-lg clickbtn" onClick={handlePlaceOrderAndPay} disabled={loading}>
-            {loading ? "Processing..." : "Place My Order"}
+            {loading ? "Processing..." : "Place Order"}
             </button>
           </div>
         </div>

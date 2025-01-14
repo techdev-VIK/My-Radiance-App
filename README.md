@@ -7,8 +7,11 @@ Radiance is an e-commerce application that has product listings for various beau
 * React with Redux Toolkit
 * Styling using Bootstrap
 * React Router for routes
+* Redux Persist: To persist state across browser sessions.
+* Axios: For making API requests.
 * Express & Node for API Repo Link
 * MongoDB using mongoose for data storage
+* Cloudinary: For image management and optimization.
 
 
 ## Functionalities
@@ -69,3 +72,54 @@ https://my-radiance-app.vercel.app/
 
 https://www.loom.com/share/59a1c355ab744987a74fa2cb9e476b79?sid=2c57cedb-8be7-4ee4-8daf-5595b3d6948f
 
+
+## Radiance - Beauty Products E-Commerce Website
+
+This project was bootstrapped with Vite.
+
+
+### Installation Options
+
+You can set up and run this project as below:
+
+#### Clone the Repository
+
+1) Clone this repository to your local machine:
+
+git clone https://github.com/your-username/radiance.git
+
+
+2) Navigate into the project directory:
+
+cd radiance
+
+
+3) Install dependencies:
+
+npm install
+
+
+### Available Scripts
+
+#### npm run dev
+
+- Starts the development server.
+- Open http://localhost:5173 to view the app in your browser.
+- The page will reload automatically whenever you make edits.
+
+#### npm run build
+- Builds the app for production.
+- Bundles and optimizes your React app for the best performance.
+- Output is placed in the dist folder, ready for deployment.
+
+#### npm run preview
+- Serves the production build locally for testing.
+- Useful for ensuring the build works as expected.
+
+#### npm run lint
+- Runs ESLint to check for code quality and fixable issues.
+- Helps maintain clean and consistent code.
+
+
+
+##### This README provides clear instructions for users on how to install, run, and understand the project. Let me know if you’d like further customization or additional details!
