@@ -7,6 +7,7 @@ function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sortValue, setSortValue] = useState("");
 
   const backendUrl = "https://radiance-backend.vercel.app";
 
@@ -30,6 +31,8 @@ function OrderHistory() {
   const sortByDateHandler = (e) => {
     
     const {value} = e.target;
+
+    setSortValue(value);
 
     let sortedOrders = [...orders];
 
@@ -62,8 +65,8 @@ function OrderHistory() {
 
       <h2>Orders History</h2>
 
-      <select className='form-select' onChange={sortByDateHandler} style={{width: "auto"}}>
-        <option value="" selected disabled>-- Sort By --</option>
+      <select className='form-select' onChange={sortByDateHandler} style={{width: "auto"}} value={sortValue}>
+        <option value="" disabled>-- Sort By --</option>
         <option value="Newest">Newest First</option>
         <option value="Oldest">Oldest First</option>
       </select>

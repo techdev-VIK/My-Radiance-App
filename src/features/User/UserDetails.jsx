@@ -95,8 +95,6 @@ function UserDetails() {
     }
   };
   
-  
-
 
   if (loading) {
     return (

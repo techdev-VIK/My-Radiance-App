@@ -6,6 +6,7 @@ import { setUserData } from "../User/UserSlice";
 import { cartActions } from "./CartSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ShippingAddress from "../../pages/ShippingAddress";
 
 
 const ShippingAddressComp = () => {
@@ -50,33 +51,10 @@ const ShippingAddressComp = () => {
   };
 
 
-   const handleOrderNow = async() => {
+   const handleOrderNow = () => {
 
-      const orderData = {
-        userId: userData._id,
-        items: cartItems.map((item) => ({
-          itemId: item._id,
-          name: item.productName,
-          quantity: item.quantity,
-          price: item.productMRP
-        })),
-        shippingAddress: selectedAddress
-      }
-
-      // console.log(orderData);
-
-      try {
-          const response = await axios.post(`${backendUrl}/order/create`, orderData);
-
-          if(response.data){
-            dispatch(cartActions.clearCart());
-
-            navigate("/pages/orderPlaced");
-          }
-      } catch (error) {
-        console.error('Error placing order:', error);
-
-      }
+      navigate("/pages/payAndOrder", {state: {shippingAddress: selectedAddress}});
+          
     }
 
 

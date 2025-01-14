@@ -56,8 +56,8 @@ const Login = () => {
     <>
       <Header />
 
-      <main className="container main-content mb-5">
-        <div className="row justify-content-center mt-4">
+      <main className="container main-content">
+        <div className="row justify-content-center my-5">
           <div className="col-md-6 col-lg-5">
             <div className="card border-info shadow">
               <div className="card-body pt-0">
