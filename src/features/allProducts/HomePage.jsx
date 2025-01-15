@@ -124,7 +124,7 @@ if (status==="error") return <div className="alert alert-danger">{error}</div>
             
         </div>
         <div className='row'>
-        {products && (products.filter((item) => item.productType === "Hair Care").slice(0,4).map((product) => (
+        {products && (products.filter((item) => item.productType === "Hair Care").slice(5,9).map((product) => (
              <div className='col-lg-3 col-md-3 col-sm-6 mb-4' key={product._id}>
              <ProductCard product={product} />
              </div>

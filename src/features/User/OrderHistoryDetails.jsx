@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';  
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function OrderHistoryDetails() {
   const username = localStorage.getItem("username");
@@ -25,6 +26,7 @@ function OrderHistoryDetails() {
 
     fetchOrders();
   }, [username]);
+
 
   const detailedOrder = orders.find((order) => order._id === detailId); // Find the order by detailId
 
@@ -82,10 +84,16 @@ function OrderHistoryDetails() {
                           style={{objectFit: "cover", height: "100%"}}
                         />
                       </div>
-                      <div className="col-md-8 mt-3">
-                        <h6>{item.itemId.productName}</h6>
-                        <p><strong>Quantity: </strong>{item.quantity}</p>
-                        <p><strong>Price: </strong>₹{item.itemId.productMRP}<span className='ms-2 text-secondary fw-light'>(per item)</span></p>
+                      <div className="col-md-8">
+                        <div className='fs-4 mb-3'>{item.itemId.productName}</div>
+
+                        <div className='mb-2'><strong>Category: </strong>{item.itemId.productCategory}</div>
+
+                        <div className='mb-2'><strong>Quantity: </strong>{item.quantity}</div>
+
+                        <div className='mb-2'><strong>Price: </strong>₹{item.itemId.productMRP}<span className='ms-2 text-secondary fw-light'>(per item)</span></div>
+
+                        <Link to={`/allProducts/${item.itemId._id}`}><button className='btn btn-info text-light mt-3'>Buy Again</button></Link>
                       </div>
                     </div>
                   ))}
