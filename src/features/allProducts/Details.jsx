@@ -11,11 +11,17 @@ import AddToCart from "../../components/AddToCart";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchProducts } from "./productsSlice";
+import { wishlistActions } from "../Saved for Later/wishlistSlice";
+import { cartActions } from "../Cart/CartSlice";
 
 export default function Details(){
 
 
   const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart.cartProducts);
+
+  const wishlists = useSelector((state) => state.wishlist.wishlistProducts);
 
   const {products, status, error} = useSelector((state) => state.products)
 
@@ -43,6 +49,29 @@ export default function Details(){
   }, [productId]);
 
   
+  const handleSaveForLater = (productId) => {
+  
+    const product = cartItems.find((item) => item._id === productId)
+  
+    if (!product) {
+  
+      return;
+    }
+  
+    const isWishlist = wishlists.some((item) => item._id === product.productId);
+
+  
+  
+    if(!isWishlist){
+      dispatch(wishlistActions.addToWishlist(product))
+    
+      dispatch(cartActions.removeFromCart({productId}))
+    }else{
+      dispatch(cartActions.removeFromCart({productId}))
+    }
+  }
+
+
 
     if (status==="error") return <div className="alert alert-danger">{error}</div>
 
@@ -184,7 +213,12 @@ export default function Details(){
                 <div className="mb-3"><span><i className="bi bi-truck me-2"></i></span>Delivery in 2-3 Days</div>
                 <div className="mb-3 text-success">Sold By: Radiance Co.</div>
                 <AddToCart product={productData} /> 
-                
+                <button 
+                      className="btn btn-outline-info w-100 mt-3" 
+                      onClick={() => handleSaveForLater(productData._id)}
+                    >
+                      Save For Later
+                 </button>
             </div>
             </div>
             </div>
