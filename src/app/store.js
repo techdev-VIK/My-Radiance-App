@@ -35,6 +35,17 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const radianceStore = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                // Ignore specific redux-persist actions
+                ignoredActions: [
+                    "persist/PERSIST",
+                    "persist/REHYDRATE",
+                    "persist/REGISTER",
+                ],
+            },
+        }),
 })
 
 // Step 5: Create the persistor for the store

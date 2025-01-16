@@ -9,14 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchProducts } from "./productsSlice";
 import { wishlistActions } from "../Saved for Later/wishlistSlice";
-import { cartActions } from "../Cart/CartSlice";
 
 export default function Details(){
 
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.cartProducts);
 
   const wishlists = useSelector((state) => state.wishlist.wishlistProducts);
 
@@ -48,7 +46,7 @@ export default function Details(){
   
   const handleSaveForLater = (productId) => {
   
-    const product = cartItems.find((item) => item._id === productId)
+    const product = products.find((item) => item._id === productId)
   
     if (!product) {
   
@@ -61,10 +59,6 @@ export default function Details(){
   
     if(!isWishlist){
       dispatch(wishlistActions.addToWishlist(product))
-    
-      dispatch(cartActions.removeFromCart({productId}))
-    }else{
-      dispatch(cartActions.removeFromCart({productId}))
     }
   }
 
