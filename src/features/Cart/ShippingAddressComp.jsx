@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../../useFetch";
 import { useEffect } from "react";
 import { setUserData } from "../User/UserSlice";
-import { cartActions } from "./CartSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ShippingAddress from "../../pages/ShippingAddress";
 
 
 const ShippingAddressComp = () => {
@@ -18,15 +16,10 @@ const ShippingAddressComp = () => {
   // Fetch user data
   const { data, loading, error } = useFetch(`${backendUrl}/users/read/${username}`);
 
-  // console.log(data);
-
   
   const {userData} = useSelector((state) => state.user)
 
-  const cartItems = useSelector((state) => state.cart.cartProducts);
 
-
-  // State to track selected address
   const [selectedAddress, setSelectedAddress] = useState("");
 
   const [otherAddressForm, setOtherAddressForm] = useState(false);

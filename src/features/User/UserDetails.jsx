@@ -288,9 +288,6 @@ function UserDetails() {
 
                       </div></div>)}
 
-                      
-                     
-                      
 
 
                       {userData?.otherAddresses.length>0 && (

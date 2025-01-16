@@ -10,7 +10,7 @@ function OrderHistoryDetails() {
   const [error, setError] = useState(null);
 
   const backendUrl = "https://radiance-backend.vercel.app";
-  const { detailId } = useParams();  // Extract detailId from URL params
+  const { detailId } = useParams(); 
 
   useEffect(() => {
     const fetchOrders = async () => {

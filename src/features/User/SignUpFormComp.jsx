@@ -182,7 +182,7 @@ const SignUpFormComp = () => {
                         <label htmlFor="username" className="form-label">Username</label>
                         <div className="input-group">
                             <span className="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="text" className={`form-control border-info`} id="username" aria-describedby="inputGroupPrepend" onChange={(e) => setUsername(e.target.value)} value={username} minLength={5} required />
+                            <input type="text" className={`form-control border-info`} id="username" aria-describedby="inputGroupPrepend" onChange={(e) => setUsername(e.target.value)} value={username} minLength={5} maxLength={12} required />
                         </div>
                     </div>
 

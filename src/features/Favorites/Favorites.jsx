@@ -1,7 +1,4 @@
 
-import '../../App.css';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -13,9 +10,6 @@ import { useSelector } from 'react-redux';
 function Favorites() {
 
     const favorites = useSelector((state) => state.favorites.favProducts);
-
-
-    // console.log(favorites);
 
 
   return (

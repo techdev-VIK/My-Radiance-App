@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // For showing login errors
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const Login = () => {
         localStorage.setItem("username", username);
         navigate("/");
       } else {
-        setErrorMessage(response.data.message || "Login failed. Please try again."); // Handle login errors
+        setErrorMessage(response.data.message || "Login failed. Please try again.");
       }
     } catch (error) {
       setErrorMessage(

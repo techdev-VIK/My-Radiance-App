@@ -151,7 +151,7 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
                 onChange={handleRatingChange} 
                 className="rating-slider" 
                 />
-                {/* <span>{rating}</span> */}
+                
 
                 <div className="rating-div">
                 <span>0</span>

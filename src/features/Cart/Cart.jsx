@@ -59,7 +59,6 @@ const handleSaveForLater = (productId) => {
 
   const isWishlist = wishlists.some((item) => item._id === product.productId);
 
-  // console.log(isWishlist);
 
 
   if(!isWishlist){
