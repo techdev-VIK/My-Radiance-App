@@ -3,7 +3,7 @@
 import { useParams } from "react-router-dom";
 
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import ProductCard from "../../components/ProductCard";
 
@@ -19,27 +19,30 @@ export default function Details(){
 
   const {products, status, error} = useSelector((state) => state.products)
 
-  // console.log(products)
+
 
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
 
 
-    const [quantity, setTotalQuantity] = useState(1)
+    const {productId} = useParams();
 
-    const productId = useParams();
-    // console.log(productId)
 
-    const productData = products?.find((item) => item._id === (productId.productId));
+    const productData = products?.find((item) => item._id === (productId));
 
-    // console.log(productData)
+   
 
     const recommendProducts = productData.productType;
 
     const currentProductId = productData.productId;
 
+  // Scroll to top when productId changes
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top
+  }, [productId]);
 
+  
 
     if (status==="error") return <div className="alert alert-danger">{error}</div>
 
@@ -175,15 +178,11 @@ export default function Details(){
             <div className="col-md-3">
                 <div className="card p-0" style={{position: "sticky", top: "100px"}}>
                 <div className="card-body">
-                <div className='mb-2'><sup className="fs-6">₹</sup><span className="fs-3">{(productData.productMRP * quantity).toFixed(2)} </span></div>
+                <div className='mb-2'><sup className="fs-6">₹</sup><span className="fs-3">{(productData.productMRP).toFixed(2)} </span></div>
                 <p className="text-success">In Stock</p>
-                <div>
-                    Pack of:
-                    <select className="form-control p-1 w-50" onChange={(e) => setTotalQuantity(e.target.value)}>
-                    <option value="1">1</option>
-                    </select>
-                </div>
-                <p className="mt-3">Sold By: Radiance Co.</p>
+            
+                <div className="mb-3"><span><i className="bi bi-truck me-2"></i></span>Delivery in 2-3 Days</div>
+                <div className="mb-3 text-success">Sold By: Radiance Co.</div>
                 <AddToCart product={productData} /> 
                 
             </div>
