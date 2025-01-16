@@ -5,7 +5,6 @@ const backendUrl = "https://radiance-backend.vercel.app"
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async() => {
     const response = await axios.get(`${backendUrl}/allProducts`);
-    // console.log(response.data);
     return response.data;
 })
 

@@ -21,7 +21,6 @@ function AllProducts() {
 
   const {products, status, error} = useSelector((state) => state.products)
 
-  // console.log(products)
 
   useEffect(() => {
     dispatch(fetchProducts())
