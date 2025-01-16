@@ -171,12 +171,12 @@ const SignUpFormComp = () => {
                 <form onSubmit={formHandler}>
                     <div className="col-md-4 mb-2">
                         <label htmlFor="firstName" className="form-label">First Name</label>
-                        <input type="text" className="form-control border-info" id="firstName" onChange={(e) => setFirstName(e.target.value)} value={firstName} required />
+                        <input type="text" className="form-control border-info" id="firstName" onChange={(e) => setFirstName(e.target.value)} maxLength={15} value={firstName} required />
                     </div>
 
                     <div className="col-md-4 mb-2">
                         <label htmlFor="lastName" className="form-label">Last Name</label>
-                        <input type="text" className="form-control border-info" id="lastName" onChange={(e) => setLastName(e.target.value)} value={lastName} required />
+                        <input type="text" className="form-control border-info" id="lastName" onChange={(e) => setLastName(e.target.value)} maxLength={15} value={lastName} required />
                     </div>
                     <div className="col-md-4 mb-2">
                         <label htmlFor="username" className="form-label">Username</label>

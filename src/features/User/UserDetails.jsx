@@ -289,69 +289,79 @@ function UserDetails() {
                       </div></div>)}
 
                       
-                      <div className="col-md-12 mt-4">
-                        <hr />
-                        <h4>Other Addresses:</h4>
-                      </div>
+                     
+                      
 
 
-                      {userData?.otherAddresses.map((address, index) => (
-                        <div key={index} className="col-md-6">
-                        <div className="card shadow mt-3">
-                          <div className="card-title">
-                            <h5 className="text-info fw-semibold">Other Address {index + 1}:</h5>
-                          </div>
-                          <div className="card-body">
-                            <div>{expanded ? address : `${address.slice(0,20)}`} {address.length > 20 && (
-                            <span className="text-secondary btn-link" style={{ cursor: 'pointer', textDecoration: 'none' }} onClick={() => setExpanded((prev) => !prev)}>
-                              {expanded ? '(Show less)' : '...Show more'}
-                            </span>
-                          )
-                        }</div>
+                      {userData?.otherAddresses.length>0 && (
+                        
+                        <>
+                          <div className="col-md-12 mt-4">
+                          <hr />
+                          <h4>Other Addresses:</h4>
                         </div>
-                          
+
+                        {
+                          userData?.otherAddresses.map((address, index) => (
+                            <div key={index} className="col-md-6">
+                            <div className="card shadow mt-3">
+                              <div className="card-title">
+                                <h5 className="text-info fw-semibold">Other Address {index + 1}:</h5>
+                              </div>
+                              <div className="card-body">
+                                <div>{expanded ? address : `${address.slice(0,20)}`} {address.length > 20 && (
+                                <span className="text-secondary btn-link" style={{ cursor: 'pointer', textDecoration: 'none' }} onClick={() => setExpanded((prev) => !prev)}>
+                                  {expanded ? '(Show less)' : '...Show more'}
+                                </span>
+                              )
+                            }</div>
+                            </div>
+                              
 
 
-                          <div className="d-flex justify-content-end">
-                          
-                            <button
-                              className="clickbtn btn btn-sm btn-danger text-light mt-3"
-                              data-bs-toggle="modal"
-                              data-bs-target={`#deleteModal-${index}`}
-                            >
-                              Delete
-                            </button>
-                            
-                            <div className="modal fade" id={`deleteModal-${index}`} aria-labelledby="deleteModalLabel" aria-hidden="true">
-                              <div className="modal-dialog modal-dialog-centered">
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="deleteModalLabel">Confirm Delete</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div className="modal-body">
-                                    Are you sure you want to delete this address?
-                                  </div>
-                                  <div className="modal-footer">
-                                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                      Cancel
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="clickbtn custom-btn-view"
-                                      data-bs-dismiss="modal"
-                                      onClick={() => otherAddressDeleteHandler(username, address)}
-                                    >
-                                      Confirm
-                                    </button>
+                              <div className="d-flex justify-content-end">
+                              
+                                <button
+                                  className="clickbtn btn btn-sm btn-danger text-light mt-3"
+                                  data-bs-toggle="modal"
+                                  data-bs-target={`#deleteModal-${index}`}
+                                >
+                                  Delete
+                                </button>
+                                
+                                <div className="modal fade" id={`deleteModal-${index}`} aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                  <div className="modal-dialog modal-dialog-centered">
+                                    <div className="modal-content">
+                                      <div className="modal-header">
+                                        <h1 className="modal-title fs-5" id="deleteModalLabel">Confirm Delete</h1>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div className="modal-body">
+                                        Are you sure you want to delete this address?
+                                      </div>
+                                      <div className="modal-footer">
+                                        <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                          Cancel
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="clickbtn custom-btn-view"
+                                          data-bs-dismiss="modal"
+                                          onClick={() => otherAddressDeleteHandler(username, address)}
+                                        >
+                                          Confirm
+                                        </button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                        </div>
-                      ))}
+                            </div>
+                          ))
+                        }
+                        </>
+                        )}
                     </div>
                   </div>
 
