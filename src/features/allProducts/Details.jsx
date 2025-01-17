@@ -205,7 +205,7 @@ export default function Details(){
                 <div className="mb-3 text-success">Sold By: Radiance Co.</div>
                 <AddToCart product={productData} /> 
                 <button 
-                      className="btn btn-outline-info w-100 mt-3" 
+                      className="clickbtn btn btn-outline-info w-100 mt-3" 
                       onClick={() => handleSaveForLater(productData._id)}
                     >
                       Save For Later
