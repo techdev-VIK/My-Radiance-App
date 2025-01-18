@@ -11,6 +11,7 @@ import ProductCard from '../../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 
 
+
 function HomePage() {
 
   const dispatch = useDispatch();
@@ -33,30 +34,31 @@ if (status==="error") return <div className="alert alert-danger">{error}</div>
   return (
     <>
       
-      <main className='main-content-home '> 
+      <main className='main-content'> 
 
       <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"  >
-        <div className="carousel-inner" style={{maxHeight: "400px",aspectRatio: 16 / 9, objectFit:"fill"}}>
+        <div className="carousel-inner" style={{maxHeight: "430px", objectFit:"contain"}}>
 
-        <div className="carousel-item active" >
-          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/v1734192117/Banner3_eqhdeh.jpg" className="d-block w-100" alt="image" />
-          </div>
+        <div className="carousel-item active">
+          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/c_crop,w_10000,h_2400/v1734192117/Banner3_eqhdeh.jpg" className="d-block w-100" alt="carousel image1" />
+        </div>
 
-          <div className="carousel-item ">
-          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/v1734192117/Banner1_f8igxx.jpg" className="d-block w-100" alt="image" />
-          </div>
-
-          <div className="carousel-item">
-          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/c_crop,ar_16:9/v1734192106/Banner2_wom2mj.jpg" className="d-block w-100" alt="image" />
+        <div className="carousel-item" >
+          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImage1/v1737225966/freepik__expand__92827_df2btw.png" className="d-block w-100" alt="carousel image2" />
           </div>
 
           <div className="carousel-item">
-          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/v1734192115/Banner4_pncyue.jpg" className="d-block w-100" alt="image" />
+          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImageFinal/v1737225868/freepik__expand__70433_diatcq.png" className="d-block w-100" alt="carousel image3" />
+          </div>
+
+          <div className="carousel-item">
+          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/v1737225409/freepik__expand__21747_copy_cubgql.png" className="d-block w-100" alt="carousel image4" />
           </div>
 
           
+
           <div className="carousel-item">
-          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/v1734192126/Banner5_lhgmm9.jpg" className="d-block w-100" alt="image" />
+          <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImageFinal/v1734192117/Banner1_f8igxx.jpg" className="d-block w-100" alt="carousel image5" />
           </div>
 
         </div>
