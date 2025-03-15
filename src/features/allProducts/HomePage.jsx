@@ -10,43 +10,11 @@ import { fetchProducts } from './productsSlice';
 import ProductCard from '../../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-const images = ["https://res.cloudinary.com/dcvvdfif9/image/upload/c_crop,w_10000,h_2400/v1734192117/Banner3_eqhdeh.jpg", "https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImage1/v1737225966/freepik__expand__92827_df2btw.png", "https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImageFinal/v1737225868/freepik__expand__70433_diatcq.png", "https://res.cloudinary.com/dcvvdfif9/image/upload/v1737225409/freepik__expand__21747_copy_cubgql.png", "https://res.cloudinary.com/dcvvdfif9/image/upload/t_BannerImageFinal/v1734192117/Banner1_f8igxx.jpg"];
-
-
 function HomePage() {
 
   const dispatch = useDispatch();
 
   const {products, status, error} = useSelector((state) => state.products);
-
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-
-  const prevHandler = () => {
-
-    setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
-
-  }
-
-
-  const nextHandler = () => {
-
-      setCurrentImageIndex((currentImageIndex + 1) % (images.length));
-
-  }
-
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextHandler()
-    }, 5000);
-
-    return () => {
-        clearInterval(timer)
-    }
-  }, [currentImageIndex])
 
 
   useEffect(() => {
@@ -67,24 +35,9 @@ function HomePage() {
     <>
       
       <main className='main-content'> 
-
-
-      <div>
-        <img src={images[currentImageIndex]} alt='Image' style={{width: "100%", maxHeight: "400px", objectFit:"cover"}} />
-
-        <button className="carousel-control-prev" onClick={prevHandler}>
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" onClick={nextHandler}>
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
-
       
-
-      {/* <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"  >
+        
+      <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"  >
         <div className="carousel-inner" style={{maxHeight: "400px", aspectRatio: 16/9, objectFit:"cover"}}>
 
         <div className="carousel-item active">
@@ -119,7 +72,7 @@ function HomePage() {
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
-      </div> */}
+      </div>
 
 
 
