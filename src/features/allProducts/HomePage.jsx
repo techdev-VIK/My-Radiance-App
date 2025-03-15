@@ -41,7 +41,7 @@ function HomePage() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextHandler()
-    }, 3000);
+    }, 5000);
 
     return () => {
         clearInterval(timer)
