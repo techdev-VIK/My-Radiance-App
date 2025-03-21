@@ -11,6 +11,7 @@ import ProductCard from '../../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchProducts } from './productsSlice';
+import Pagination from '../../components/Pagination';
 
 
 function AllProducts() {
@@ -36,6 +37,9 @@ function AllProducts() {
  const [rating, setRating] = useState(1);
  const [price, setPrice] = useState('All');
  const [sortOption, setSortPrice] = useState('');
+
+
+ const [currentPageProducts, setCurrentPageProducts] = useState([]);
 
  
 
@@ -97,6 +101,10 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
         return (a.productMRP - b.productMRP);
     }
 })
+
+const handlePageChange = (start, end) => {
+  setCurrentPageProducts(filterAfterSorting.slice(start, end))
+}
 
 
   if (status === "error") return <div className="alert alert-danger">{error}</div>
@@ -178,11 +186,13 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
             <hr />
 
             <div className="row">
-                {filterAfterSorting && filterAfterSorting.length > 0 ?(filterAfterSorting.map((product) => (
+                {currentPageProducts && currentPageProducts.length > 0 ?(currentPageProducts.map((product) => (
                 <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product._id}>
                 <ProductCard product={product} />
                 </div>
                 ))): (<div className='alert alert-danger'>Currently, No Products Available. Please Check Later...</div>)}
+
+                <Pagination products = {products} onPageChange = {handlePageChange} />
             </div>
             </div>
         </div>
