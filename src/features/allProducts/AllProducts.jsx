@@ -107,6 +107,11 @@ const handlePageChange = (start, end) => {
 }
 
 
+useEffect(() => {
+  handlePageChange()
+}, [filterAfterSorting])
+
+
   if (status === "error") return <div className="alert alert-danger">{error}</div>
 
   if (status === "loading") return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-info" style={{width: "5rem", height: "5rem"}} role="status">
@@ -192,7 +197,7 @@ const handlePageChange = (start, end) => {
                 </div>
                 ))): (<div className='alert alert-danger'>Currently, No Products Available. Please Check Later...</div>)}
 
-                <Pagination products = {products} onPageChange = {handlePageChange} />
+                <Pagination products = {filterAfterSorting} onPageChange = {handlePageChange} />
             </div>
             </div>
         </div>
