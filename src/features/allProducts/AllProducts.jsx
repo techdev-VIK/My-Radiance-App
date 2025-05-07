@@ -105,7 +105,6 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
 const handlePageChange = (start, end) => {
   setCurrentPageProducts(filterAfterSorting.slice(start, end))
 
-  console.log(start, end)
 }
 
 
