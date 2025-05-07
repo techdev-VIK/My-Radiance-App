@@ -104,12 +104,10 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
 
 const handlePageChange = (start, end) => {
   setCurrentPageProducts(filterAfterSorting.slice(start, end))
+
+  console.log(start, end)
 }
 
-
-useEffect(() => {
-  handlePageChange()
-}, [filterAfterSorting])
 
 
   if (status === "error") return <div className="alert alert-danger">{error}</div>
