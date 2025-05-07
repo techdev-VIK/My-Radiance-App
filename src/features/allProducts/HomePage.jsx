@@ -38,7 +38,7 @@ function HomePage() {
       
         
       <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"  >
-        <div className="carousel-inner" style={{maxHeight: "450px", objectFit:"cover"}}>
+        <div className="carousel-inner" style={{maxHeight: "50vh", objectFit:"cover"}}>
 
         <div className="carousel-item active">
           <img src="https://res.cloudinary.com/dcvvdfif9/image/upload/c_crop,w_10000,h_2400/v1734192117/Banner3_eqhdeh.jpg" className="d-block w-100" alt="carousel image1" />

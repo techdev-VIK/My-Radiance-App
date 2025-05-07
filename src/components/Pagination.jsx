@@ -37,7 +37,7 @@ const Pagination = ({products, onPageChange}) => {
     return(
         <div className="text-center my-3">
             <button className="btn btn-sm btn-info text-light mx-1" onClick={decrementHandler} disabled={currentPage === 0}>
-            <i class="bi bi-chevron-left"></i>
+            <i className="bi bi-chevron-left"></i>
             </button>
 
 
@@ -48,7 +48,7 @@ const Pagination = ({products, onPageChange}) => {
             ))}
 
             <button className="btn btn-sm btn-info text-light mx-1" onClick={incrementHandler} disabled={currentPage === numberOfPages - 1}>
-            <i class="bi bi-chevron-right"></i>
+            <i className="bi bi-chevron-right"></i>
             </button>
         </div>
     )

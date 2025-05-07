@@ -109,6 +109,10 @@ const handlePageChange = (start, end) => {
 }
 
 
+useEffect(() => {
+handlePageChange()
+}, [filterAfterSorting.length])
+
 
   if (status === "error") return <div className="alert alert-danger">{error}</div>
 
@@ -195,7 +199,7 @@ const handlePageChange = (start, end) => {
                 </div>
                 ))): (<div className='alert alert-danger'>Currently, No Products Available. Please Check Later...</div>)}
 
-                <Pagination products = {filterAfterSorting} onPageChange = {handlePageChange} />
+                {filterAfterSorting.length>0 && <Pagination products = {filterAfterSorting} onPageChange = {handlePageChange} />}
             </div>
             </div>
         </div>
