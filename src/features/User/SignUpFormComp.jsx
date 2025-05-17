@@ -107,8 +107,8 @@ const SignUpFormComp = () => {
 
                 setSuccessMessage(
                     !isEditing 
-                        ? "User added successfully! Redirecting to login page in 3 seconds..." 
-                        : "User updated successfully! Redirecting to your profile in 3 seconds..."
+                        ? "User added successfully! Redirecting to login page in 3 seconds." 
+                        : "User updated successfully! Redirecting to your profile in 3 seconds."
                 );
 
                 setFirstName('');

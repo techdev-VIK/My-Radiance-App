@@ -77,7 +77,7 @@ export default function Header(){
     <div style={{width: "70%"}}>
       <form className="w-75 ms-5" onSubmit={handleSearchSubmit}>
         <div className='input-group'>
-        <input className="form-control" type="search" placeholder="Please enter any product you wish to buy..." aria-label="Search"  value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <input className="form-control" type="search" placeholder="Please enter any product you wish to buy" aria-label="Search"  value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
         <button className="clickbtn custom-btn-search"  type="submit" >Search</button>
         </div>

@@ -28,7 +28,7 @@ const OrderPlaced = () => {
       <h1 style={{ color: "#00AFEF", fontSize: "2.5rem" }}>Order Placed!</h1>
       <p style={{ marginTop: "1rem", fontSize: "1.2rem" }}>
         Thank you for shopping with us. You will be redirected to the home page
-        in 5 seconds...
+        in 5 seconds.
       </p>
 
       <div className="spinner-grow text-info" role="status">
