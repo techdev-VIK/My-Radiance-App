@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
 
-const Pagination = ({products, onPageChange}) => {
+const Pagination = ({products, currentPage, setCurrentPage, onPageChange}) => {
 
-    const [currentPage, setCurrentPage] = useState(0);
-
+    
     const PAGE_SIZE = 9;
 
     const numberOfPages = Math.ceil(products.length/PAGE_SIZE);

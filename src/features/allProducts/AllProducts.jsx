@@ -102,6 +102,12 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
     }
 })
 
+
+// Pagination:
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+
 const handlePageChange = (start, end) => {
   setCurrentPageProducts(filterAfterSorting.slice(start, end))
 
@@ -109,7 +115,8 @@ const handlePageChange = (start, end) => {
 
 
 useEffect(() => {
-handlePageChange()
+setCurrentPage(0);
+handlePageChange();
 }, [filterAfterSorting.length, sortOption])
 
 
@@ -196,9 +203,9 @@ handlePageChange()
                 <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product._id}>
                 <ProductCard product={product} />
                 </div>
-                ))): (<div className='alert alert-danger'>Sorry, Products not available. Please Check Later.</div>)}
+                ))): (<div className='alert alert-danger'>Sorry, Products are not available. Please Check Later.</div>)}
 
-                {filterAfterSorting.length>0 && <Pagination products = {filterAfterSorting} onPageChange = {handlePageChange} />}
+                {filterAfterSorting.length>0 && <Pagination products = {filterAfterSorting} currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} />}
             </div>
             </div>
         </div>
