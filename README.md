@@ -7,10 +7,11 @@ Radiance is an e-commerce application that has product listings for various beau
 * React with Redux Toolkit
 * Styling using Bootstrap
 * React Router for routes
-* Redux Persist: To persist state across browser sessions.
-* Axios: For making API requests.
+* Redux Persist: To persist state across browser sessions
+* Axios: For making API requests
 * Express & Node for API Repo Link
 * MongoDB using mongoose for data storage
+* React-Toastify to add notifications to app
 * Cloudinary: For image management and optimization.
 
 
@@ -42,7 +43,7 @@ Radiance is an e-commerce application that has product listings for various beau
 * Checkout to address data management
 
 
-### 3. Wishlist
+### 3. Wishlist / Saved for later
 * Wishlist item list (via reducers)
 * Remove from wishlist
 * Move from wishlist to cart
@@ -70,7 +71,8 @@ https://my-radiance-app.vercel.app/
 
 ## Radiance - App Walkthrough - Watch Video
 
-https://www.loom.com/share/59a1c355ab744987a74fa2cb9e476b79?sid=2c57cedb-8be7-4ee4-8daf-5595b3d6948f
+https://www.loom.com/share/b5e151e214624260a114fff93bbf90ba?sid=d8a0a24f-6b3b-4248-97ac-d26f51584492
+
 
 
 ## Radiance - Beauty Products E-Commerce Website
