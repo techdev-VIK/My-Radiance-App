@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchProducts } from "./productsSlice";
 import { wishlistActions } from "../Saved for Later/wishlistSlice";
+import { toast } from "react-toastify";
 
 export default function Details(){
 
@@ -59,6 +60,7 @@ export default function Details(){
   
     if(!isWishlist){
       dispatch(wishlistActions.addToWishlist(product))
+      toast.info("Item saved for later!");
     }
   }
 

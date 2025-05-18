@@ -8,6 +8,7 @@ import { cartActions } from "./CartSlice";
 import CartSummary from "./CartSummary";
 
 import { wishlistActions } from "../Saved for Later/wishlistSlice";
+import { toast } from "react-toastify";
 
 function Cart(){
 
@@ -44,8 +45,8 @@ function Cart(){
 
 const handleRemoveFromCart = (productId) => {
     dispatch(cartActions.removeFromCart({productId}))
+    toast.error("Item(s) removed from cart!");
 }
-
 
 
 const handleSaveForLater = (productId) => {
@@ -64,9 +65,10 @@ const handleSaveForLater = (productId) => {
   if(!isWishlist){
     dispatch(wishlistActions.addToWishlist(product))
   
-    dispatch(cartActions.removeFromCart({productId}))
+    dispatch(cartActions.removeFromCart({productId}));
+    toast.info("Item(s) saved for later!");
   }else{
-    dispatch(cartActions.removeFromCart({productId}))
+    dispatch(cartActions.removeFromCart({productId}));
   }
 }
 

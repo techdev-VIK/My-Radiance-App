@@ -5,7 +5,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -42,13 +43,16 @@ const Login = () => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", username);
         navigate("/");
+        toast.info("Login Successfull!!");
       } else {
-        setErrorMessage(response.data.message || "Login failed. Please try again.");
+
+        toast.error(response.data.message);
       }
     } catch (error) {
       setErrorMessage(
         error.response?.data?.message || "Something went wrong. Please try again."
       );
+      toast.error(error.response?.data?.message);
     }
   };
 

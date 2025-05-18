@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { cartActions } from "../features/Cart/CartSlice";
 import { wishlistActions } from "../features/Saved for Later/wishlistSlice";
+import { toast } from "react-toastify";
 
 const AddToCart = ({product, fromWishlist = false}) => {
 
@@ -8,9 +9,10 @@ const AddToCart = ({product, fromWishlist = false}) => {
 
     const handleAddToCart = () => {
         dispatch(cartActions.addToCart(product));
+        toast.success("Yayy!! Item added to cart!");
 
         if(fromWishlist){
-            dispatch(wishlistActions.removeFromWishlist(product))
+            dispatch(wishlistActions.removeFromWishlist(product));
         }
     }
     

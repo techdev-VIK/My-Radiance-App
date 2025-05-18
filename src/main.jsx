@@ -35,6 +35,8 @@ import Wishlist from './features/Saved for Later/Wishlist.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 import OrderHistoryDetailsPage from './pages/OrderHistoryDetailsPage.jsx';
 import PlaceOrderAndPay from './features/Cart/PlaceOrderAndPay.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const router = createBrowserRouter([
@@ -107,5 +109,17 @@ createRoot(document.getElementById('root')).render(
           <RouterProvider router = {router} />
       </PersistGate>
     </Provider>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+      />
   </StrictMode>,
 )

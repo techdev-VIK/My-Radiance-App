@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { favActions } from '../features/Favorites/favoritesSlice';
+import { toast } from 'react-toastify';
 
 function FavsHeart({product}){
     
@@ -12,8 +13,10 @@ function FavsHeart({product}){
     const handleHeartClick = () => {
         if(!isFavorite){
             dispatch(favActions.addToFavs(product))
+            toast.info("Item added to favorites!");
         }else{
-            dispatch(favActions.removeFromFavs(product))
+            dispatch(favActions.removeFromFavs(product));
+            toast.error("Item removed from favorites!");
         }
     }
     return (
