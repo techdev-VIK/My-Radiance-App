@@ -198,7 +198,7 @@ handlePageChange();
             <div className="col-md-9">
 
             <div className='d-flex justify-content-between my-2'>
-                <h3>{searchQuery ? `Products Available for "${searchQuery}": `: "Products Available: " }{filterAfterSorting &&filterAfterSorting.length}</h3>
+                <h3>{searchQuery ? `Products available for "${searchQuery}": `: "Products available: " }{filterAfterSorting &&filterAfterSorting.length}</h3>
 
                 <select className='form-select w-auto' onChange={(e) => setSortPrice(e.target.value)}>
                     <option value="">-- Sort By Price --</option>

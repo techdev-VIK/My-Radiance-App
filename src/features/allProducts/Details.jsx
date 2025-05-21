@@ -39,7 +39,6 @@ export default function Details(){
 
     const currentProductId = productData.productId;
 
-  // Scroll to top when productId changes
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top
   }, [productId]);
@@ -89,16 +88,15 @@ export default function Details(){
             </div>
 
             <div className='col-md-6'>
-                <p className='mb-2 fs-2'>{productData.productName}, {(productData.productDescription).slice(0,-1)
-                }, {productData.
+                <p className='mb-2 fs-3 fw-2'>{productData.productName} - {productData.
                     productQuantity
                     }</p>
                 
                 <hr />
 
-                <div className='mt-3 fs-5 fw-3'>Category: {productData.productCategory}</div>
+                <div className='mt-3 fs-5 fw-4'>Category: {productData.productCategory}</div>
 
-                <div className='mt-3 fs-5 fw-3'>Skin Type: {productData.productSkinType}</div>
+                <div className='mt-3 fs-5 fw-4'>Skin Type: {productData.productSkinType}</div>
 
                 <div className='mt-3 fs-5'>Rating: <span><i className="bi bi-star-fill text-warning"></i></span>{(productData.productRating).toFixed(1)}</div>
                 
@@ -187,6 +185,10 @@ export default function Details(){
             <hr />
 
              <div>
+
+                <h6><strong>Description:</strong></h6>
+                <div className="mb-3">{productData.productDescription}</div>
+
                 <h6><strong>About This Item</strong></h6>
                 <ul>
                     {productData.aboutTheProduct.map((about, index) => (
