@@ -29,7 +29,7 @@ function Favorites() {
                   <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product._id}>
                     <ProductCard product={product} />
                   </div>
-                ))): (<div className='alert alert-danger col-md-6'>Your wishlist is empty.</div>)}
+                ))): (<div className='alert alert-danger col-md-6'>Your Favorites List is empty.</div>)}
             </div>
             </div>
         </div>

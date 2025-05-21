@@ -141,13 +141,10 @@ const totalCartItems = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
                       <i className="bi bi-trash me-1"></i>Delete
                     </button>
                   </div>
-
-
-                    </div>
-
+                </div>
                     
                 </div>
-                ))): (<div className='alert alert-danger col-md-6'>No Products Available in the Cart.</div>)}
+                ))): (<div className='alert alert-danger col-md-6'>Your Radiance Cart is empty.</div>)}
             </div>
             </div>
 

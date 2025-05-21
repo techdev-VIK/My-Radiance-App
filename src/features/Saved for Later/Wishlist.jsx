@@ -27,10 +27,9 @@ const Wishlist = () => {
                             <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product.productId}>
                                 <ProductCard product={product} fromWishlist={true}/> 
                             </div>
-                        ))) : (<div className='alert alert-danger col-md-6'>Sorry! Products are not available.</div>)}
+                        ))) : (<div className='alert alert-danger col-md-6'>Your Radiance Wishlist is empty.</div>)}
                     </div>
                 </div>
-
             </div>
         </main>
         <Footer />
