@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useEffect, useState } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
@@ -214,7 +214,14 @@ handlePageChange();
                 <div className='col-lg-4 col-md-4 col-sm-6 mb-4' key={product._id}>
                 <ProductCard product={product} />
                 </div>
-                ))): (<div className='alert alert-danger'>Sorry, Products are not available. Please Check Later.</div>)}
+                ))): (<><div className='alert alert-danger'>Sorry, Products are not available. Please check later.</div><div className="d-flex justify-content-center mt-5">
+                  <Link
+                    className='clickbtn custom-btn-view text-center'
+                    to="/"
+                  >
+                    Back to previous page
+                  </Link>
+                </div></>)}
 
                 {filterAfterSorting.length>0 && <Pagination products = {filterAfterSorting} currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} />}
             </div>
