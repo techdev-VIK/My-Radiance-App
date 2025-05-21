@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchProducts } from './productsSlice';
 import Pagination from '../../components/Pagination';
+import ShimmerCard from '../../components/Shimmer';
 
 
 function AllProducts() {
@@ -105,7 +106,7 @@ const filterAfterSorting = !sortOption ? filteredProducts : filteredProducts.sor
 
 // Pagination:
 
-  const [currentPage, setCurrentPage] = useState(0);
+const [currentPage, setCurrentPage] = useState(0);
 
 
 const handlePageChange = (start, end) => {
@@ -122,9 +123,19 @@ handlePageChange();
 
   if (status === "error") return <div className="alert alert-danger">{error}</div>
 
-  if (status === "loading") return <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}><div className="spinner-border text-info" style={{width: "5rem", height: "5rem"}} role="status">
-  <span className="visually-hidden">Loading...</span>
-</div></div>
+  if (status === "loading") {
+    return (
+      <div className='container py-5'>
+        <div className='row mt-5'>
+          {Array(12).fill().map((_, idx) => (
+            <div className='col-lg-3 col-md-3 col-sm-6' key={idx}>
+              <ShimmerCard />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
