@@ -3,9 +3,10 @@ import '../App.css';
 
 import { useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useEffect } from 'react';
+import { removeUserData } from '../features/User/UserSlice';
 
 
 export default function Header(){
@@ -16,6 +17,8 @@ export default function Header(){
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +35,7 @@ export default function Header(){
     } else {
       localStorage.removeItem("token"); // Remove token from storage
       localStorage.removeItem("username");
+      dispatch(removeUserData())
       setIsLoggedIn(false);
       navigate("/"); // Redirect to home
     }
